@@ -14,7 +14,18 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->id();     
+            $table->foreignId('competency_id');
+            $table->foreignId('task_detail_id');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->text('excerpt');
+            $table->text('body');
+            $table->string('reward');
+            $table->string('punishment');            
+            $table->decimal('price',10,2);
+            $table->timestamp('publish_at')->nullable();
             $table->timestamps();
         });
     }

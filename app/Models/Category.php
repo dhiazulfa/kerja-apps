@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+    protected $fillable = ['name'];
+
+    public function employees(){
+        return $this->hasMany(Employee::class);
+    }
+
+    // public function packages(){
+    //     return $this->hasMany(Package::class);
+    // }
 }

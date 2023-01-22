@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskDetailsTable extends Migration
+class CreateAcceptedTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateTaskDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_details', function (Blueprint $table) {
+        Schema::create('accepted_tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('task_id');
+            $table->foreignId('user_id');
+            $table->enum('status', ['accepted', 'refuse','on_progress', 'submit', 'failed','done']);
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateTaskDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_details');
+        Schema::dropIfExists('accepted_tasks');
     }
 }

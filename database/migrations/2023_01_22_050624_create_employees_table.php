@@ -15,6 +15,12 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('competency_id')->nullable();
+            $table->foreignId('category_id')->default('Outsourcing');
+            $table->string('nik')->unique();
+            $table->string('umur');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

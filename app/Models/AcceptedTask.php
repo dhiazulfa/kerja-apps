@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task-Detail extends Model
+class AcceptedTask extends Model
 {
     use HasFactory;
 }
