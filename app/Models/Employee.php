@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+
+    protected $guarded  = ['id'];
+    protected $fillable = ['user_id', 'competency_id', 'category_id', 'nik', 'umur', 'image'];
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function competency(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
