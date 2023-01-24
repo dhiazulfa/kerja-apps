@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Admin
+use App\Http\Controllers\AdminCategoriesController;
+use App\Http\Controllers\AdminCompetenciesController;
+use App\Http\Controllers\AdminEducationsController;
+use App\Http\Controllers\AdminNotifiesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route Admin Category
+Route::resource('/dashboard/categories', AdminCategoriesController::class)->middleware('admin');
+
+//Route Admin Competency
+Route::resource('/dashboard/competencies', AdminCompetenciesController::class)->middleware('admin');
+Route::get('/dashboard/competencies/checkSlug', [AdminCompetenciesController::class, 'checkSlug'])->middleware('admin');
+
+//Route Admin Educations
+Route::resource('/dashboard/educations', AdminEducationsController::class)->middleware('admin');
+Route::get('/dashboard/educations/checkSlug', [AdminEducationsController::class, 'checkSlug'])->middleware('admin');

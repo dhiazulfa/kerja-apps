@@ -16,7 +16,6 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();     
             $table->foreignId('competency_id');
-            $table->foreignId('task_detail_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
