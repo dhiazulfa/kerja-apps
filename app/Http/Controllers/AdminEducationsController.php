@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 class AdminEducationsController extends Controller
 {
     /**
@@ -14,7 +16,9 @@ class AdminEducationsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.educations.index', [
+            'educations' => Education::all()
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class AdminEducationsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.educations.create');
     }
 
     /**
@@ -35,7 +39,13 @@ class AdminEducationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required | max:255',
+            'slug' => 'required | unique:educations'
+        ]);
+
+        Education::create($validatedData);
+        return redirect('/admin/educations')->with('success', 'Education has been added!');
     }
 
     /**
@@ -57,7 +67,9 @@ class AdminEducationsController extends Controller
      */
     public function edit(Education $education)
     {
-        //
+        return view('admin.educations.edit',[
+            'education' => $education
+        ]);
     }
 
     /**
