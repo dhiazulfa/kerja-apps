@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1,
             'password' => bcrypt('test123')
           ]);
+
+        // Category::create([
+        //   'name' => 'InHouse',
+        // ]);
+
+        // Category::create([
+        //     'name' => 'Outsourcing',
+        //   ]);
     }
 }

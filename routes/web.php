@@ -46,12 +46,12 @@ Route::get('/admin', function(){
 })->middleware('auth');
 
 //Route Admin Category
-Route::resource('/dashboard/categories', AdminCategoriesController::class)->middleware('admin');
+Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
 
 //Route Admin Competency
-Route::resource('/dashboard/competencies', AdminCompetenciesController::class)->middleware('admin');
-Route::get('/dashboard/competencies/checkSlug', [AdminCompetenciesController::class, 'checkSlug'])->middleware('admin');
+Route::resource('/admin/competencies', AdminCompetenciesController::class)->middleware('admin');
+Route::get('/admin/competencies/checkSlug', [AdminCompetenciesController::class, 'checkSlug'])->middleware('admin');
 
 //Route Admin Educations
-Route::resource('/dashboard/educations', AdminEducationsController::class)->middleware('admin');
-Route::get('/dashboard/educations/checkSlug', [AdminEducationsController::class, 'checkSlug'])->middleware('admin');
+Route::resource('/admin/educations', AdminEducationsController::class)->middleware('admin');
+Route::get('/admin/educations/checkSlug', [AdminEducationsController::class, 'checkSlug'])->middleware('admin');

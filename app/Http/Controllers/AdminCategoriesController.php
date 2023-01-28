@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AdminCategoriesController extends Controller
 {
@@ -14,7 +17,7 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        return view('dashboard.categories.index',[
+        return view('admin.categories.index',[
             'categories' => Category::all()
         ]);
     }
@@ -26,7 +29,7 @@ class AdminCategoriesController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,10 +42,11 @@ class AdminCategoriesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required | max:255',
+            'slug' => 'required | unique:categories'
         ]);
 
         Category::create($validatedData);
-        return redirect('/dashboard/categories')->with('success', 'New Category has been added!');
+        return redirect('/admin/categories')->with('success', 'New Category has been added!');
     }
 
     /**
@@ -64,7 +68,7 @@ class AdminCategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.categories.edit',[
+        return view('admin.categories.edit',[
             'category' => $category
         ]);
     }
@@ -82,10 +86,15 @@ class AdminCategoriesController extends Controller
             'name' => 'required | max:255'
         ];
 
+        //validasi slug
+        if($request->slug != $category->slug ){
+            $rules['slug'] = 'required|unique:categories';
+        }
+
         $validatedData = $request->validate($rules);
 
         Category::where('id', $category->id)->update($validatedData);
-        return redirect('/dashboard/categories')->with('success', 'Category has been updated!');
+        return redirect('/admin/categories')->with('success', 'Category has been updated!');
     }
 
     /**
@@ -96,6 +105,7 @@ class AdminCategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect('/admin/categories')->with('success', 'Category has been deleted!');
     }
 }
