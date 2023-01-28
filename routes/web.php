@@ -2,11 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Models
+use App\Models\User;
+
 //Admin
 use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\AdminCompetenciesController;
 use App\Http\Controllers\AdminEducationsController;
 use App\Http\Controllers\AdminNotifiesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +28,22 @@ use App\Http\Controllers\AdminNotifiesController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route Register
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
+//Route Login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+//Route Logout
+Route::post('/logout', [LoginController::class, 'logout']);
+
+//Route login dashboard
+Route::get('/admin', function(){
+    return view('admin.index');
+})->middleware('auth');
 
 //Route Admin Category
 Route::resource('/dashboard/categories', AdminCategoriesController::class)->middleware('admin');

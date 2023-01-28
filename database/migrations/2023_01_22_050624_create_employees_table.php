@@ -18,6 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('competency_id')->nullable();
             $table->foreignId('category_id')->nullable();
+            $table->foreignId('education_id')->nullable();
             $table->string('nik')->unique();
             $table->string('umur');
             $table->string('image')->nullable();

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@kerja.id',
+            'phone_number' => '085877070612',
+            'is_admin' => 1,
+            'password' => bcrypt('test123')
+          ]);
     }
 }
