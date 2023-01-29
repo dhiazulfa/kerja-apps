@@ -65,35 +65,40 @@
               <div class="card-body p-4">
                 <h1>Register</h1>
                 <p class="text-medium-emphasis">Create your account</p>
+                
+                <form action="/register" method="POST">
+                @csrf
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-
                     </svg></span>
-                  <input class="form-control" type="text" name="name" placeholder="Name">
+                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Name" value="{{old('name')}}" requiered>
                 </div>
+
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                     </svg></span>
-                  <input class="form-control" type="text" placeholder="Email">
+                  <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{old('email')}}" requiered>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-phone"></use>
+                    </svg></span>
+                  <input class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" placeholder="Phone Number" value="{{old('phone_number')}}" requiered>
                 </div>
 
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                     </svg></span>
-                  <input class="form-control" type="password" placeholder="Password">
-                </div>
-                
-                <div class="input-group mb-4"><span class="input-group-text">
-                    <svg class="icon">
-                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                    </svg></span>
-                  <input class="form-control" type="password" placeholder="Repeat password">
+                  <input class="form-control" type="password" name="password" placeholder="Password" requiered>
                 </div>
 
-                <button class="btn btn-block btn-success" type="button">Create Account</button>
+                <button class="btn btn-block btn-success" type="submit">Create Account</button>
+                </form>
+                <small class="d-block text-center">Already Registered? <a href="/login">Login</a></small>
               </div>
             </div>
           </div>
