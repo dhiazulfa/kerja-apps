@@ -85,13 +85,14 @@
                   </div>
                   @endif
 
-                  <form action="/login-admin" method="POST">
+                  
+                  <form action="/login" method="POST">
                     @csrf
-                    <div class="input-group col-md-4 mb-3"><span class="input-group-text">
+                    <div class="input-group mb-3"><span class="input-group-text">
                         <svg class="icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                         </svg></span>
-                      <input name="email" id="email" class="form-control col-md-4 @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email" placeholder="Email" required autofocus>
+                      <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email" placeholder="Email" required autofocus>
                       
                       @error('email')
                       <div class="invalid-feedback"> 
@@ -101,11 +102,11 @@
 
                     </div>
 
-                    <div class="input-group col-md-4 mb-4"><span class="input-group-text">
+                    <div class="input-group mb-4"><span class="input-group-text">
                         <svg class="icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                         </svg></span>
-                      <input class="form-control col-md-4" name="password" id="password" type="password" placeholder="Password" required>
+                      <input class="form-control" name="password" id="password" type="password" placeholder="Password" required>
                     </div>
 
                     <div class="row">
@@ -113,7 +114,18 @@
                         <button class="btn btn-primary px-4" type="submit">Login</button>
                       </div>
                     </div>
+
                   </form>
+                  
+                </div>
+              </div>
+              <div class="card col-md-5 text-white bg-primary py-5">
+                <div class="card-body text-center">
+                  <div>
+                    <h2>Sign up</h2>
+                    <img class="mb-4" src="assets/img/omtech.jpeg" alt="" width="230" height="230">
+                    <a class="btn btn-lg btn-outline-light mt-3" type="button" href="/register">Register Now!</a>
+                  </div>
                 </div>
               </div>
             </div>
