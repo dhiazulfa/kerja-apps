@@ -41,6 +41,9 @@ class AdminCompetenciesController extends Controller
             'name' => 'required | max:255',
             'slug'  => 'required | unique:competencies'
         ]);
+
+        Competency::create($validatedData);
+        return redirect('/admin/competencies')->with('success', 'New Competency has been added!');
     }
 
     /**
