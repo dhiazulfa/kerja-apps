@@ -14,7 +14,9 @@ class AdminCompetenciesController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.competencies.index', [
+            'competencies' => Competency::all()
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class AdminCompetenciesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.competencies.create');
     }
 
     /**
@@ -35,7 +37,10 @@ class AdminCompetenciesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required | max:255',
+            'slug'  => 'required | unique:competencies'
+        ]);
     }
 
     /**
@@ -57,7 +62,9 @@ class AdminCompetenciesController extends Controller
      */
     public function edit(Competency $competency)
     {
-        //
+        return view('admin.competencies.edit',[
+            'competency' => $competency
+        ]);
     }
 
     /**
@@ -69,7 +76,19 @@ class AdminCompetenciesController extends Controller
      */
     public function update(Request $request, Competency $competency)
     {
-        //
+        $rules = [
+            'name' => 'required | max:255'
+        ];
+
+        //validasi slug
+        if($request->slug != $competency->slug){
+            $rules ['slug'] = 'required | unique:competencies';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Competency::where('id', $competency->id)->update($validatedData);
+        return redirect('/admin/competencies')->with('success', 'Competency has been updated!');
     }
 
     /**
@@ -80,6 +99,7 @@ class AdminCompetenciesController extends Controller
      */
     public function destroy(Competency $competency)
     {
-        //
+        Competency::destroy($competency->id);
+        return redirect('/admin/competencies')->with('success', 'Competency has been deleted');
     }
 }
