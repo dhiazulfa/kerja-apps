@@ -12,7 +12,7 @@
       
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
         <svg class="nav-icon">
-          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-bank"></use>
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-folder"></use>
         </svg> Master Data Users</a>
       <ul class="nav-group-items">
         <li class="nav-item"><a class="nav-link" href="/admin/categories">
@@ -26,6 +26,13 @@
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-education"></use>
         </svg> Educations</a>
       </li>
+      
+      <li class="nav-item"><a class="nav-link" href="/admin/competencies">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+        </svg> Competency</a>
+      </li>
+
       </ul>
     </li>
 

@@ -25,10 +25,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 //Route Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
@@ -55,3 +52,7 @@ Route::get('/admin/competencies/checkSlug', [AdminCompetenciesController::class,
 //Route Admin Educations
 Route::resource('/admin/educations', AdminEducationsController::class)->middleware('admin');
 Route::get('/admin/educations/checkSlug', [AdminEducationsController::class, 'checkSlug'])->middleware('admin');
+
+//Route Admin Competencies
+Route::resource('/admin/competencies', AdminCompetenciesController::class)->middleware('admin');
+Route::get('/admin/competencies/checkSlug', [AdminCompetenciesController::class, 'checkSlug'])->middleware('admin');
