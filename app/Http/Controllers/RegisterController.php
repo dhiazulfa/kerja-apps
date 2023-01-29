@@ -52,6 +52,6 @@ class RegisterController extends Controller
         //$cek = Student::create($validatedData2);
         ////$request->session()->flash('success', 'Registration successfull! Please Login');
         //return $cek;
-        return redirect('/login')->with('success', 'Pendaftaran selesai! Silahkan Login!');
+        return redirect('/')->with('success', 'Pendaftaran selesai! Silahkan Login!');
     }
 }
