@@ -124,7 +124,7 @@
                   <div>
                     <h2>Sign up</h2>
                     <img class="mb-4" src="assets/img/omtech.jpeg" alt="" width="230" height="230">
-                    <button class="btn btn-lg btn-outline-light mt-3" type="button">Register Now!</button>
+                    <a class="btn btn-lg btn-outline-light mt-3" type="button" href="/register">Register Now!</a>
                   </div>
                 </div>
               </div>
