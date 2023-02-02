@@ -7,7 +7,10 @@
       <li class="nav-item"><a class="nav-link" href="/admin">
           <svg class="nav-icon">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-          </svg> Dashboard</a></li>
+          </svg> Dashboard</a>
+      </li>
+
+      @can('admin')
       <li class="nav-title">Admin</li>
       
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -47,6 +50,7 @@
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
           </svg> Task</a>
       </li>
+      @endcan
 
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

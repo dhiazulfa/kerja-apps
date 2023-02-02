@@ -34,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin;
          });
 
+        Gate::define('user', function(User $user){
+            return $user->role === 'user';
+         });
+
         Blade::directive('currency', function ( $expression ) 
          { 
             return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; 

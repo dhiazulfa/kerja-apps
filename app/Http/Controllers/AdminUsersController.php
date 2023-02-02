@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Competency;
+use App\Models\Educations;
+use App\Models\Employee;
+
 use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
@@ -14,7 +19,9 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.users.index',[
+            'users' => User::where('role', '!=', 'user')->get()
+        ]);
     }
 
     /**
@@ -24,7 +31,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -35,7 +42,18 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required','max:255'],
+            'email' => ['required','min:3','max:100','unique:users'],
+            'role' => ['required'],
+            'phone_number' => ['required','numeric'],
+            'password' => ['required', 'min:7', 'max:255'],
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+
+        return redirect('/admin/users')->with('success', 'New User has been added!');
     }
 
     /**
@@ -46,7 +64,9 @@ class AdminUsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show',[
+            'user' => $user
+        ]);
     }
 
     /**
@@ -57,7 +77,12 @@ class AdminUsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', [
+            'user' => $user,
+            'competencies' => Category::all(),
+            'competencies' => Competency::all(),
+            'educations' => Education::all(),
+        ]);
     }
 
     /**
