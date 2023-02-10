@@ -85,7 +85,7 @@ class AdminTasksController extends Controller
     $task['excerpt'] = Str::limit(strip_tags($request->body), 100);
     $task->save();
 
-    return redirect()->route('tasks.index')->with('success', 'Task created successfully');
+    return redirect('/admin/tasks')->with('success', 'Tasks has been created!');
 }
 
     /**

@@ -9,12 +9,34 @@
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
           </svg> Dashboard</a>
       </li>
-
-      <li class="nav-item"><a class="nav-link" href="/admin/accepted-task">
+      @can('admin')
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-book"></use>
-        </svg>Accepted Task</a>
+        </svg>Data Pelamar</a>
+      <ul class="nav-group-items">
+        <li class="nav-item"><a class="nav-link" href="/admin/accepted-task">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-window-restore"></use>
+          </svg> Pelamar Masuk</a>
       </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/educations">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-education"></use>
+        </svg> Pelamar Diterima</a>
+      </li>
+      
+      {{-- <li class="nav-item"><a class="nav-link" href="/admin/tasks-setting">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+        </svg> Task Masuk</a>
+      </li> --}}
+
+        </ul>
+      </li>
+
+      @endcan
 
       <li class="nav-title">Data</li>
       @can('admin')

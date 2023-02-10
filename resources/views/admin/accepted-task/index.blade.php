@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Task Management</h1>
+    <h1 class="h2">Daftar Pelamar Pekerjaan</h1>
   </div>
 @if(session()->has('success'))
 
@@ -42,6 +42,7 @@
                   <a href="/admin/accepted-task/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                   </svg></span></a>
+                  
                   {{-- <form action="/admin/tasks/{{ $task->slug }}" method="POST" class="d-inline">
                     @method('delete')
                     @csrf

@@ -17,7 +17,7 @@ class AdminAcceptedTaskController extends Controller
     public function index()
     {   
         return view('admin.accepted-task.index',[
-        'acceptedTasks' => AcceptedTask::all(),
+        'acceptedTasks' => AcceptedTask::where('status','=', 'inactive')->get(),
         'employees' => Employee::all(),
         ]);
     }
@@ -79,9 +79,18 @@ class AdminAcceptedTaskController extends Controller
      * @param  \App\Models\AcceptedTask  $acceptedTask
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcceptedTask $acceptedTask)
+    public function update(Request $request, $id)
     {
-        //
+        $acceptedTask = AcceptedTask::find($id);
+        
+        $validatedData = $request->validate([
+            'status' => 'required|string'
+        ]);
+                
+        $acceptedTask->status = $validatedData['status'];
+        $acceptedTask->save();
+    
+        return redirect('/admin/accepted-task')->with('success', 'Task diambil dan akan diverifikasi admin');
     }
 
     /**

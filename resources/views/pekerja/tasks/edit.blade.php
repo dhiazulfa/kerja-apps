@@ -13,19 +13,10 @@
         @csrf
 
         <div class="mb-3 col-md-4">
-            <label for="name" class="form-label">Penyedia</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $name }}" readonly>
-            <input type="text" class="form-control @error('task_id') is-invalid @enderror" id="task_id" name="task_id" value="{{$task->id}}" hidden>
-            @error('task_id')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
-        </div>
-
-        <div class="mb-3 col-md-4">
           <label for="title" class="form-label">Title</label>
           <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title', $task->title)}}" readonly>
+          <input type="text" class="form-control @error('task_id') is-invalid @enderror" id="task_id" name="task_id" value="{{$task->id}}" hidden>
+
           @error('title')
             <div class="invalid-feedback">
               {{$message}}
