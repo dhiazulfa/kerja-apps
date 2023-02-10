@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Task;
 use App\Models\AcceptedTask;
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -71,9 +72,16 @@ class DashboardTaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        //
+        $acceptedTask = AcceptedTask::find($id);
+
+        $task = Task::where('id', $acceptedTask->task_id)->first();
+
+        return view('pekerja.tasks.show',[
+            'acceptedTask' => $acceptedTask,
+            'task' => $task,
+        ]);
     }
 
     /**

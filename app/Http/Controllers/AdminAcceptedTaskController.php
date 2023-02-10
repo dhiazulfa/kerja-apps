@@ -98,7 +98,7 @@ class AdminAcceptedTaskController extends Controller
         $acceptedTask->status = $validatedData['status'];
         $acceptedTask->save();
     
-        return redirect('/admin/accepted-task')->with('success', 'Task diambil dan akan diverifikasi admin');
+        return redirect('/admin/accepted-task')->with('success', 'Task sudah diverifikasi!');
     }
 
     /**

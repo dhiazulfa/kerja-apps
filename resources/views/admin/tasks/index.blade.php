@@ -12,7 +12,9 @@
   </div>
   @endif
     <div class="table-responsive col-lg-12">
+      @can('penyedia')
       <a href="/admin/tasks/create" class="btn btn-primary mb-3">Create New Task</a>
+      @endcan
       <table class="table table-bordered table-lg-12">
         <thead>
           <tr>

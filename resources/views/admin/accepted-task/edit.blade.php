@@ -36,9 +36,16 @@
             <label for="body" class="form-label">Harga yang ditawarkan: <b> @currency($acceptedTask->task->price),- </b></label>
         </div>
 
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-            <h1 class="h2">Data Diri Pelamar</h1>
+        <div class="mb-3 col-md-4">
+            <label for="status" class="form-label">Status Pekerjaan</label>
+            <select class="form-control" name="status" required>
+              <option value="">Pilih Salah Satu</option>
+              <option value="accepted">Accepted</option>
+              <option value="ditolak">Ditolak</option>
+            </select>
         </div>
+
+        <h1 class="h2">Data Diri Pelamar</h1>
 
         <div class="mb-3 col-md-12">
             <label for="name" class="form-label">Nama: <b> {{ $acceptedTask->employee->name }} </b></label>
@@ -62,31 +69,13 @@
 
         <div class="mb-3 col-md-12">
             <label for="price" class="form-label">Foto KTP</label>
-            <img src="{{asset('storage/' . $employee->foto_ktp)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">            @error('title')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <img src="{{asset('storage/' . $employee->foto_ktp)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
         </div>
 
         <div class="mb-3 col-md-12">
             <label for="price" class="form-label">Sertifikat Keahlian</label>
-            <img src="{{asset('storage/' . $employee->foto_sertifikat_pengalaman)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">            @error('title')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <img src="{{asset('storage/' . $employee->foto_sertifikat_pengalaman)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
         </div>
-
-        <div class="mb-3 col-md-4">
-            <label for="status" class="form-label">Status Pekerjaan</label>
-            <select class="form-control @error('status') is-invalid @enderror" name="status" required>
-              <option value="">Pilih Salah Satu</option>
-              <option value="accepted">Accepted</option>
-              <option value="ditolak">Ditolak</option>
-            </select>
-        </div>
-
 
         <button type="submit" class="btn btn-primary">Update Status</button>
     </form>

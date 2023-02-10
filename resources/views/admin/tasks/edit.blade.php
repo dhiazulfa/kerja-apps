@@ -13,68 +13,32 @@
         @csrf
 
         <div class="mb-3 col-md-4">
-            <label for="name" class="form-label">Penyedia</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $name }}" readonly>
-            @error('name')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <label for="name" class="form-label">Penyedia: <b> {{ $name }} </b></label>
         </div>
 
         <div class="mb-3 col-md-4">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title', $task->title)}}" readonly>
-          @error('title')
-            <div class="invalid-feedback">
-              {{$message}}
-            </div>
-          @enderror
+          <label for="title" class="form-label">Title: <b> {{$task->title}} </b></label>
         </div>
 
-        <div class="mb-3 col-md-4">
+        <div class="mb-3 col-md-12">
             <label for="body" class="form-label">Deskripsi Pekerjaan</label>
             <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" readonly>{{old('body', $task->body)}}</textarea>
         </div>
 
         <div class="mb-3 col-md-4">
-            <label for="title" class="form-label">Jenis Pekerjaan</label>
-            <input type="text" class="form-control @error('waktu_pekerjaan') is-invalid @enderror" id="waktu_pekerjaan" name="waktu_pekerjaan" value="{{old('waktu_pekerjaan', $task->waktu_pekerjaan)}}" readonly>
-            @error('waktu_pekerjaan')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <label for="title" class="form-label">Jenis Pekerjaan: <b>{{$task->waktu_pekerjaan}}</b></label>
         </div>
 
         <div class="mb-3 col-md-4">
-            <label for="title" class="form-label">Tanggal</label>
-            <input type="text" class="form-control @error('tgl_mulai') is-invalid @enderror" id="tgl_mulai" name="tgl_mulai" value="{{$task->tgl_mulai. ' s/d ' .$task->tgl_selesai}}" readonly>
-            @error('tgl_mulai')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <label for="title" class="form-label">Tanggal: <b>{{$task->tgl_mulai. ' s/d ' .$task->tgl_selesai}}</b></label>
         </div>
 
         <div class="mb-3 col-md-4">
-        <label for="title" class="form-label">Waktu</label>
-            <input type="text" class="form-control @error('jam_masuk') is-invalid @enderror" id="jam_masuk" name="jam_masuk" value="{{$task->jam_masuk.' s/d '.$task->jam_selesai}}" readonly>
-            @error('jam_masuk')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-        @enderror
+        <label for="title" class="form-label">Waktu: <b>{{$task->jam_masuk.' s/d '.$task->jam_selesai}}</b></label>
         </div>
 
         <div class="mb-3 col-md-4">
-            <label for="price" class="form-label">Harga yang Ditawarkan</label>
-            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="@currency($task->price),-" readonly>
-            @error('title')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+            <label for="price" class="form-label">Harga yang Ditawarkan: <b> @currency($task->price),- </b></label>
         </div>
 
         <div class="mb-3 col-md-4">
