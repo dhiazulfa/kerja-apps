@@ -60,7 +60,7 @@ class AdminNotifiesController extends Controller
             );
         }
 
-        return redirect('/admin/admin-notify')->with('success', 'Notifikasi berhasil dikirim!');
+        return redirect('/admin/admin-notifies')->with('success', 'Notifikasi berhasil dikirim!');
     }
 
     /**
