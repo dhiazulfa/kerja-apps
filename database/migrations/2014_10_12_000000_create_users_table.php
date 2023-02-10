@@ -17,11 +17,12 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('password');
             $table->string('phone_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->boolean('is_admin')->default(false);
-            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->enum('role', ['pekerja','penyedia','admin']);
+            $table->enum('status', ['active','inactive'])->default('inactive');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Employee;
+use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
-use App\Models\User;
-use App\Models\Competency;
-use App\Models\Category;
-use App\Models\Education;
 
 class RegisterController extends Controller
 {
@@ -17,41 +15,59 @@ class RegisterController extends Controller
         return view('register.index', [
             'title'=> 'Register',
             'active' => 'register',
-            'categories' => Category::all()
+            'educations' => Education::all()
         ]);
     }
 
-    public function store(Request $request){
-        $validatedData = $request->validate([
-            'name' => ['required','max:255'],
-            'phone_number' => ['required','numeric'],
-            'email'=> ['required', 'unique:users'],
-            'password'=>['required','min:6', 'max:255' ]
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'phone_number' => 'required|string|max:255',
+            'education_id' => 'required|integer',
+            'nik' => 'required|string|max:255|unique:employees',
+            'alamat_ktp' => 'required|string|max:255',
+            'alamat_domisili' => 'required|string|max:255',
+            'status_pernikahan' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string|max:255',
+            'pengalaman_kerja' => 'required|string|max:255',
+            'umur' => 'required|integer',
+            'tgl_lahir' => 'required',
+            'foto_ktp' => 'required|image',
+            'foto_kk' => 'required|image',
+            'foto_sertifikat_pengalaman' => 'required|image',
+            'foto_ijazah_terakhir' => 'required|image',
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'phone_number' => $request->input('phone_number'),
+            'is_admin' => false,
+            'role' => 'pekerja',
+            'status' => 'inactive',
+        ]);
 
-        $saved_user = User::create($validatedData);
-        //$user_id = $saved_user->id;
-        //
-        //$validatedData2 = $request->validate([
-        //    'category_id' => ['required'],
-        //    //'notify_id' => ['required'],
-        //    'user_id' => [$user_id],
-        //    //'materials_id' => ['required'],
-        //    'nisn' => ['required','max:255'],
-        //    'tgl_lahir'=>['required'],
-        //    'jenis_kelamin' => ['required'],
-        //    'nama_ortu'=> ['required', 'max:200'],
-        //    'pekerjaan_ortu'=> ['required', 'max:200'],
-        //    'alamat' => 'required',
-        //    'tingkat_sekolah'=> ['required'],
-        //    'asal_sekolah' => ['required', 'max:200'],
-        //]);
-        //
-        //$cek = Student::create($validatedData2);
-        ////$request->session()->flash('success', 'Registration successfull! Please Login');
-        //return $cek;
+        $employee = Employee::create([
+            'user_id' => $user->id,
+            'education_id' => $request->input('education_id'),
+            'nik' => $request->input('nik'),
+            'alamat_ktp' => $request->input('alamat_ktp'),
+            'alamat_domisili' => $request->input('alamat_domisili'),
+            'status_pernikahan' => $request->input('status_pernikahan'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
+            'pengalaman_kerja' => $request->input('pengalaman_kerja'),
+            'umur' => $request->input('umur'),
+            'tgl_lahir' => $request->input('tgl_lahir'),
+            'foto_ktp' => $request->file('foto_ktp')->store('employee/foto_ktp'),
+            'foto_kk' => $request->file('foto_kk')->store('employee/foto_kk'),
+            'foto_sertifikat_pengalaman' => $request->file('foto_sertifikat_pengalaman')->store('employee/foto_sertifikat_pengalaman'),
+            'foto_ijazah_terakhir' => $request->file('foto_ijazah_terakhir')->store('employee/foto_ijazah_terakhir'),
+            ]);
+
         return redirect('/')->with('success', 'Pendaftaran selesai! Silahkan Login!');
     }
 }

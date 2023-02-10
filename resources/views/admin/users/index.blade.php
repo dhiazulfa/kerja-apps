@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Jenjang Pendidikan</h1>
+    <h1 class="h2">Data Pekerja</h1>
   </div>
 
   @if(session()->has('success'))
@@ -11,15 +11,17 @@
     {{session('success')}}
   </div>
   @endif
-    <div class="table-responsive col-lg-6">
-      <a href="/admin/educations/create" class="btn btn-primary mb-3">Create New Education</a>
+    <div class="table-responsive col-lg-12">
+      {{-- <a href="/admin/educations/create" class="btn btn-primary mb-3">Create New Education</a> --}}
       <table class="table table-bordered table-sm">
         <thead>
           <tr>
             <th>No</th>
+            <th>NIK</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -27,21 +29,23 @@
             @foreach($users  as $user)
             <tr>
               <td>{{ $loop->iteration }}</td>
-              <td>{{ $user->name}}</td>
-              <td>{{ $user->email}}</td>
-              <td>{{ $user->phone_number}}</td>
+              <td>{{ $user->nik}}</td>
+              <td>{{ $user->user->name}}</td>
+              <td>{{ $user->user->email}}</td>
+              <td>{{ $user->user->phone_number}}</td>
+              <td>{{ $user->user->status}}</td>
               <td>
-                  <a href="/admin/users/{{ $user->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
+                  <a href="/admin/pekerja/{{ $user->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                   </svg></span></a>
 
-                  <form action="/admin/users/{{ $user->id }}" method="POST" class="d-inline">
+                  {{-- <form action="/admin/pekerja/{{ $user->id }}" method="POST" class="d-inline">
                     @method('delete')
                     @csrf
                     <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span><svg class="icon me">
                       <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
                     </svg></span></button>
-                  </form>
+                  </form> --}}
 
               </td>
             </tr>

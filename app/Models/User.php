@@ -25,7 +25,16 @@ class User extends Authenticatable
         'phone_number',
         'is_admin',
         'role',
+        'status',
     ];
+
+    public function client(){
+        return $this->belongsTo(Client::class);
+    }
+
+    public function employee(){
+        return $this->hasMany(Employee::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

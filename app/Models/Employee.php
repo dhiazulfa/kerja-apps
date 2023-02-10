@@ -11,21 +11,33 @@ class Employee extends Model
 
     protected $guarded  = ['id'];
     
-    protected $fillable = ['user_id', 'competency_id', 'category_id', 'education_id', 'nik', 'umur', 'image'];
-    protected $with = ['competency', 'category', 'education', 'user'];
-
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
-
-    public function competency(){
-        return $this->belongsTo(Competency::class);
-    }
+    protected $fillable = [
+        'user_id',  
+        'education_id', 
+        'nik',
+        'alamat_ktp',
+        'alamat_domisili',
+        'status_pernikahan',
+        'jenis_kelamin',
+        'pengalaman_kerja',
+        'umur',
+        'tgl_lahir',
+        'foto_ktp', 
+        'foto_kk',
+        'foto_sertifikat_pengalaman',
+        'foto_ijazah_terakhir',
+    
+    ];
+    protected $with = ['education', 'user'];
 
     public function education(){
         return $this->belongsTo(Education::class);
     }
 
+    public function acceptedTask(){
+        return $this->belongsTo(AcceptedTask::class);
+    }
+    
     public function user(){
         return $this->belongsTo(User::class);
     }

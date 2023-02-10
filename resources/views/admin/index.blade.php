@@ -7,6 +7,9 @@
 @endif
 
 <div class="body flex-grow-1 px-3">
+    @if(Auth::user()->status == 'inactive')
+     <p>Akun belum active</p>
+    @else
     <div class="container-lg">
       <div class="row">
         <div class="col-sm-6 col-lg-3">
@@ -111,7 +114,7 @@
         <!-- /.col-->
       </div>
 
-      <!-- /.row-->
+      {{-- <!-- /.row-->
       <div class="card mb-4">
         <div class="card-body">
           <div class="d-flex justify-content-between">
@@ -249,9 +252,11 @@
           </div>
         </div>
         <!-- /.col-->
-      </div>
+      </div> --}}
+
+
       <!-- /.row-->
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-md-12">
           <div class="card mb-4">
             <div class="card-header">Traffic &amp; Sales</div>
@@ -460,9 +465,11 @@
                   </div>
                 </div>
                 <!-- /.col-->
-              </div>
-              <!-- /.row--><br>
-              <div class="table-responsive">
+              </div> --}}
+
+
+              <!-- /.row-->
+              {{-- <div class="table-responsive">
                 <table class="table border mb-0">
                   <thead class="table-light fw-semibold">
                     <tr class="align-middle">
@@ -746,7 +753,7 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -754,5 +761,6 @@
       </div>
       <!-- /.row-->
     </div>
+    @endif
   </div>
 @endsection

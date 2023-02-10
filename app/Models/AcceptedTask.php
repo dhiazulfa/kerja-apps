@@ -11,6 +11,14 @@ class AcceptedTask extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['task_id', 'user_id', 'status', 'image'];
-    protected $with = ['task', 'user'];
+    protected $fillable = ['task_id', 'employee_id', 'status', 'foto_bukti'];
+    protected $with = ['task', 'employee'];
+
+    public function employee(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function task(){
+        return $this->belongsTo(Task::class);
+    }
 }

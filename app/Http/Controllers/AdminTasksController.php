@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AdminTasksController extends Controller
 {
@@ -13,8 +17,19 @@ class AdminTasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $user = Auth::user()->id;
+        $user2 = Auth::user()->role;
+
+        if($user2 == 'admin'){
+            return view('admin.tasks.index',[
+                'tasks' => Task::all()
+            ]);
+        } else {
+            return view('admin.tasks.index',[
+                'tasks' => Task::all()->where('client_id', $user)
+            ]);
+        }
     }
 
     /**
@@ -24,7 +39,7 @@ class AdminTasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tasks.create');
     }
 
     /**
@@ -34,9 +49,44 @@ class AdminTasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $validatedData = $request->validate([
+        'title' => 'required|string',
+        'slug' => 'required|string|unique:tasks',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'body' => 'required|string',
+        'waktu_pekerjaan' => 'required|string',
+        'jam_masuk' => 'required|date_format:H:i:s',
+        'jam_selesai' => 'required|date_format:H:i:s',
+        'tgl_mulai' => 'required|date',
+        'tgl_selesai' => 'required|date',
+        'punishment' => 'required',
+        'price' => 'required|numeric'
+    ]);
+
+    $client_id = Auth::user()->id;
+
+    $task = new Task([
+        'client_id' => $client_id,
+        'title' => $validatedData['title'],
+        'slug' => $validatedData['slug'],
+        'image' => $validatedData['image'],
+        'body' => $validatedData['body'],
+        'waktu_pekerjaan' => $validatedData['waktu_pekerjaan'],
+        'status' => 'inactive',
+        'jam_masuk' => $validatedData['jam_masuk'],
+        'jam_selesai' => $validatedData['jam_selesai'],
+        'tgl_mulai' => $validatedData['tgl_mulai'],
+        'tgl_selesai' => $validatedData['tgl_selesai'],
+        'punishment' => $validatedData['punishment'],
+        'price' => $validatedData['price']
+    ]);
+
+    $task['excerpt'] = Str::limit(strip_tags($request->body), 100);
+    $task->save();
+
+    return redirect()->route('tasks.index')->with('success', 'Task created successfully');
+}
 
     /**
      * Display the specified resource.
@@ -56,8 +106,13 @@ class AdminTasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $task)
-    {
-        //
+    {   
+        $name = User::where('id', $task->client_id)->pluck('name')->first();
+
+        return view('admin.tasks.edit',[
+            'task' => $task,
+            'name' => $name,
+        ]);
     }
 
     /**
@@ -69,7 +124,15 @@ class AdminTasksController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validatedData = $request->validate([
+            'status' => 'required|string'
+        ]);
+    
+        $task->update([
+            'status' => $validatedData['status']
+        ]);
+    
+        return redirect('/admin/tasks')->with('success', 'Tasks has been updated!');
     }
 
     /**

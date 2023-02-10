@@ -66,13 +66,35 @@
                 <h1>Register</h1>
                 <p class="text-medium-emphasis">Create your account</p>
                 
-                <form action="/register" method="POST">
+                <form action="/register" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  <svg class="icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-id-card"></use>
+                  </svg></span>
+                <input class="form-control @error('nik') is-invalid @enderror" type="text" name="nik" placeholder="NIK" value="{{old('nik')}}" requiered>
+                </div>
+
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                     </svg></span>
-                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Name" value="{{old('name')}}" requiered>
+                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Nama" value="{{old('name')}}" requiered>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  <svg class="icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-numbers"></use>
+                  </svg></span>
+                <input class="form-control @error('umur') is-invalid @enderror" type="text" name="umur" placeholder="Umur" value="{{old('umur')}}" requiered>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  <svg class="icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                  </svg></span>
+                <input class="form-control @error('tgl_lahir') is-invalid @enderror" type="date" name="tgl_lahir" placeholder="Tanggal Lahir" value="{{old('tgl_lahir')}}" requiered>
                 </div>
 
                 <div class="input-group mb-3"><span class="input-group-text">
@@ -96,9 +118,97 @@
                   <input class="form-control" type="password" name="password" placeholder="Password" requiered>
                 </div>
 
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-heart"></use>
+                    </svg>
+                  </span>
+                  <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" required>
+                    <option value="">Jenis Kelamin</option>
+                    <option value="pria">Pria</option>
+                    <option value="wanita">Wanita</option>
+                  </select>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
+                    </svg>
+                  </span>
+                  <select class="form-control @error('education_id') is-invalid @enderror" name="education_id" required>
+                    <option value="education_id">-- Pilih Pendidikan --</option>
+                    @foreach($educations as $education)
+                      <option value="{{$education->id}}" {{old('education_id') == $education->id ? 'selected' : ''}}>{{$education->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                    </svg>
+                  </span>
+                  <textarea class="form-control @error('alamat_domisili') is-invalid @enderror" name="alamat_ktp" placeholder="Address Domisili" requiered>{{old('alamat_domisili')}}</textarea>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                    </svg>
+                  </span>
+                  <textarea class="form-control row-5 @error('alamat_domisili') is-invalid @enderror" name="alamat_domisili" placeholder="Address Domisili" requiered>{{old('alamat_domisili')}}</textarea>
+                </div>
+                
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-heart"></use>
+                    </svg>
+                  </span>
+                  <select class="form-control @error('status_pernikahan') is-invalid @enderror" name="status_pernikahan" required>
+                    <option value="">Status Perkawinan</option>
+                    <option value="lajang">Lajang</option>
+                    <option value="menikah">Menikah</option>
+                    <option value="bercerai">Bercerai</option>
+                  </select>
+                </div>
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                    </svg>
+                  </span>
+                  <textarea class="form-control row-5 @error('pengalaman_kerja') is-invalid @enderror" name="pengalaman_kerja" placeholder="Pengalaman Kerja" requiered>{{old('pengalaman_kerja')}}</textarea>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  Foto KTP</span>
+                <input class="form-control" type="file" name="foto_ktp" placeholder="Foto KTP" requiered>
+                </div>
+                
+                <div class="input-group mb-3"><span class="input-group-text">
+                  Foto KK</span>
+                <input class="form-control" type="file" name="foto_kk" placeholder="Foto KK" requiered>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  Foto Ijazah Terakhir</span>
+                <input class="form-control" type="file" name="foto_ijazah_terakhir" placeholder="Foto Ijazah Terakhir" requiered>
+                </div>
+
+                <div class="input-group mb-3"><span class="input-group-text">
+                  Foto Sertifikasi Keahlian</span>
+                <input class="form-control" type="file" name="foto_sertifikat_pengalaman" placeholder="Foto Sertifikat Keahlian" requiered>
+                </div>
+
                 <button class="btn btn-block btn-success" type="submit">Create Account</button>
                 </form>
-                <small class="d-block text-center">Already Registered? <a href="/login">Login</a></small>
+                <small class="d-block text-center"><a href="/register-penyedia">Register sebagai Penyedia Kerja</a></small>
               </div>
             </div>
           </div>

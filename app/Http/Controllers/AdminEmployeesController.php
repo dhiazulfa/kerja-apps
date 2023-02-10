@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Education;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminEmployeesController extends Controller
@@ -13,8 +15,11 @@ class AdminEmployeesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $users = Employee::all();
+        return view('admin.users.index',[
+            'users' => $users
+        ]);
     }
 
     /**
@@ -55,9 +60,20 @@ class AdminEmployeesController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        $name = User::where('id', $employee->user_id)->pluck('name')->first();
+        $education = Education::where('id', $employee->education_id)->pluck('name')->first();
+        
+        // dd($education);
+        
+        return view('admin.users.edit',[
+            'employee' => $employee,
+            'name' => $name,
+            'education' => $education,
+        ]);
     }
 
     /**
@@ -67,9 +83,20 @@ class AdminEmployeesController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::find($id);
+        
+        $user = User::where('id', $employee->user_id)->first();
+                
+        $validatedData = $request->validate([
+            'status' => 'required|string'
+        ]);
+                
+        $user->status = $validatedData['status'];
+        $user->save();
+            
+        return redirect('/admin/pekerja')->with('success', 'Users has been updated!');
     }
 
     /**

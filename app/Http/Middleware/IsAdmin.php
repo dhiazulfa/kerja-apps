@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || !auth()->user()->is_admin || auth()->user()->role!=='admin'){
+        if(!auth()->check() || !auth()->user()->role=='admin' || !auth()->user()->role=='penyedia' ){
             abort(403);
         }
         

@@ -11,16 +11,31 @@ class Task extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['competency_id', 'title', 'slug', 'image', 'excerpt', 'body', 'reward', 'punishment', 'price'];
-    protected $with = ['competency'];
+    protected $fillable = [
+        'client_id', 
+        'title', 
+        'slug', 
+        'image', 
+        'excerpt', 
+        'body', 
+        'waktu_pekerjaan',
+        'status',
+        'jam_masuk',
+        'jam_selesai',
+        'tgl_mulai',
+        'tgl_selesai', 
+        'punishment',
+        'price'
+    ];
+    protected $with = ['client'];
 
 
-    public function competency(){
-        return $this->belongsTo(Competency::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 
-    public function AcceptedTask(){
-        return $this->hasMany(AcceptedTask::class);
+    public function acceptedTask(){
+        return $this->belongsTo(AcceptedTask::class);
     }
 
 }

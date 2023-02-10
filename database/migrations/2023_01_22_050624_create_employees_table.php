@@ -14,16 +14,25 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id')->unsigned();
             $table->foreignId('user_id');
-            $table->foreignId('competency_id')->nullable();
-            $table->foreignId('category_id')->nullable();
-            $table->foreignId('education_id')->nullable();
+            $table->foreignId('education_id');
             $table->string('nik')->unique();
             $table->string('umur');
-            $table->string('image')->nullable();
+            $table->date('tgl_lahir');
+            $table->longText('alamat_domisili');
+            $table->longText('alamat_ktp');
+            $table->longText('pengalaman_kerja');
+            $table->string('jenis_kelamin');
+            $table->string('status_pernikahan');
+            $table->string('foto_ktp');
+            $table->string('foto_kk');
+            $table->string('foto_ijazah_terakhir');
+            $table->string('foto_sertifikat_pengalaman')->nullable();
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE employees AUTO_INCREMENT = 10000;");
     }
 
     /**

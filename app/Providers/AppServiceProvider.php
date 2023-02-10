@@ -34,8 +34,12 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin;
          });
 
-        Gate::define('user', function(User $user){
-            return $user->role === 'user';
+        Gate::define('penyedia', function(User $user){
+            return $user->role === 'penyedia';
+         });
+
+         Gate::define('pekerja', function(User $user){
+            return $user->role === 'pekerja';
          });
 
         Blade::directive('currency', function ( $expression ) 

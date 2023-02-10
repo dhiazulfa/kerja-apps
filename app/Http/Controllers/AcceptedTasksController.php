@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AcceptedTask;
 use Illuminate\Http\Request;
 
+
 class AcceptedTasksController extends Controller
 {
     /**

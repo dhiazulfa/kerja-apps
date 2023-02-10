@@ -1,0 +1,129 @@
+@extends('admin.layouts.main')
+@section('container')
+
+<div class="container-fluid">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
+    <h1 class="h2">Create New Task</h1>
+</div>
+
+<div class="col-md-8">
+  <form method="POST" action="/admin/tasks" class="mb-5" enctype="multipart/form-data">
+    @csrf
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title')}}" required autofocus>
+      @error('title')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="slug" class="form-label">Slug</label>
+        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{old('slug')}}" required>
+        @error('slug')
+          <div class="invalid-feedback">
+            {{$message}}
+          </div>
+        @enderror
+      </div>
+
+    <div class="mb-3">
+        <label for="waktu_pekerjaan" class="form-label">Waktu Pekerjaan</label>
+        <select class="form-control @error('waktu_pekerjaan') is-invalid @enderror" name="waktu_pekerjaan" required>
+          <option value="">Pilih Salah Satu</option>
+          <option value="harian">Harian</option>
+          <option value="mingguan">Mingguan</option>
+          <option value="bulanan">Bulanan</option>
+        </select>
+    </div>
+
+    <div class="smb-3">
+        <label for="body" class="form-label">Deskripsi Pekerjaan</label>
+        <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" requiered>{{old('body')}}</textarea>
+    </div>
+
+    <div class="smb-3">
+        <label for="punishment" class="form-label">Hukuman apabila tidak selesai</label>
+        <textarea class="form-control row-10 @error('punishment') is-invalid @enderror" name="punishment" requiered>{{old('punishment')}}</textarea>
+    </div>
+    
+    <div class="mb-3">
+      <label for="jam_masuk" class="form-label">Jam Masuk</label>
+      <input type="time" step="1" class="form-control @error('jam_masuk') is-invalid @enderror" id="jam_masuk" name="jam_masuk" value="{{old('jam_masuk')}}" required>
+      @error('jam_masuk')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+    
+    <div class="mb-3">
+      <label for="jam_selesai" class="form-label">Jam Selesai</label>
+      <input type="time" step="1" class="form-control @error('jam_selesai') is-invalid @enderror" id="jam_selesai" name="jam_selesai" value="{{old('jam_selesai')}}" required>
+      @error('jam_selesai')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="tgl_mulai" class="form-label">Tanggal Masuk</label>
+      <input type="date" class="form-control @error('tgl_mulai') is-invalid @enderror" id="tgl_mulai" name="tgl_mulai" value="{{old('tgl_mulai')}}" required>
+      @error('tgl_mulai')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+    
+    <div class="mb-3">
+      <label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
+      <input type="date" class="form-control @error('tgl_selesai') is-invalid @enderror" id="tgl_selesai" name="tgl_selesai" value="{{old('tgl_selesai')}}" required>
+      @error('tgl_selesai')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Gaji</label>
+        <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price')}}" required>
+        @error('price')
+          <div class="invalid-feedback">
+            {{$message}}
+          </div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Gambar</label>
+        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image')}}" required>
+        @error('image')
+          <div class="invalid-feedback">
+            {{$message}}
+          </div>
+        @enderror
+      </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+</div>
+</div>
+<script>
+ const title  = document.querySelector('#title');
+ const slug   = document.querySelector('#slug');
+
+ title.addEventListener('change', function(){
+  fetch('/dashboard/categories/checkSlug?title=' + title.value)
+  .then(response => response.json())
+  .then(data => slug.value = data.slug)
+ });
+
+</script>
+
+@endsection

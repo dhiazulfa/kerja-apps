@@ -10,13 +10,18 @@
           </svg> Dashboard</a>
       </li>
 
+      <li class="nav-item"><a class="nav-link" href="/admin/accepted-task">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-book"></use>
+        </svg>Accepted Task</a>
+      </li>
+
+      <li class="nav-title">Data</li>
       @can('admin')
-      <li class="nav-title">Admin</li>
-      
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-folder"></use>
-        </svg> Master Data Users</a>
+        </svg> Master Data</a>
       <ul class="nav-group-items">
         <li class="nav-item"><a class="nav-link" href="/admin/categories">
           <svg class="nav-icon">
@@ -30,28 +35,46 @@
         </svg> Educations</a>
       </li>
       
-      <li class="nav-item"><a class="nav-link" href="/admin/competencies">
+      {{-- <li class="nav-item"><a class="nav-link" href="/admin/tasks-setting">
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
-        </svg> Competency</a>
+        </svg> Task Masuk</a>
+      </li> --}}
+
+        </ul>
       </li>
 
-      </ul>
-    </li>
-
-      <li class="nav-item"><a class="nav-link" href="/admin/users">
+      <li class="nav-title">Data</li>
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
         <svg class="nav-icon">
-          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-        </svg> Users</a>
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-folder"></use>
+        </svg> Users Data</a>
+      <ul class="nav-group-items">
+        <li class="nav-item"><a class="nav-link" href="/admin/pekerja">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+          </svg> Pekerja</a>
       </li>
 
-      <li class="nav-item"><a class="nav-link" href="typography.html">
-          <svg class="nav-icon">
-            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-          </svg> Task</a>
+      <li class="nav-item"><a class="nav-link" href="/admin/clients">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+        </svg> Penyedia</a>
+      </li>
+
+        </ul>
       </li>
       @endcan
 
+      @if(Auth::user()->status == 'inactive')
+
+      @else
+      <li class="nav-item"><a class="nav-link" href="/admin/tasks">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
+        </svg> Task</a>
+      </li>
+      @endif
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
   </div>

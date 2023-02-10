@@ -16,9 +16,9 @@ class CreateAcceptedTasksTable extends Migration
         Schema::create('accepted_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('task_id');
-            $table->foreignId('user_id');
-            $table->enum('status', ['accepted', 'refuse','on_progress', 'submit', 'failed','done']);
-            $table->string('image');
+            $table->foreignId('employee_id');
+            $table->enum('status', ['inactive','accepted', 'on_progress', 'done']);
+            $table->string('foto_bukti')->nullable();
             $table->timestamps();
         });
     }
