@@ -23,7 +23,6 @@
             <th>Tanggal Selesai</th>
             <th>Penawaran</th>
             <th>Status</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -36,11 +35,6 @@
               <td>{{ $task->task->tgl_selesai }}</td>
               <td> @currency($task->task->price),-</td>
               <td>{{ $task->status }}</td>
-              <td>
-                  <a href="/tasks/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
-                  <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                  </svg></span></a>
-              </td>
             </tr>
             @endforeach
         </tbody>

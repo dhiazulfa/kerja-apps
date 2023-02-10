@@ -11,8 +11,8 @@ class Notify extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['task_id', 'user_id', 'competency_id', 'title', 'body', 'image'];
-    protected $with     = ['task','user','competency'];
+    protected $fillable = ['task_id', 'user_id', 'title', 'body', 'image'];
+    protected $with     = ['task','user'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -22,7 +22,4 @@ class Notify extends Model
         return $this->belongsTo(Task::class);
     }
 
-    public function competency(){
-        return $this->belongsTo(Competency::class);
-    }
 }

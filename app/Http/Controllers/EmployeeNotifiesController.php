@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-class AdminNotifiesController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class EmployeeNotifiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,13 @@ class AdminNotifiesController extends Controller
      */
     public function index()
     {
-        $notify = Notify::all();
-        return view('admin.admin-notifies.index',[
-            'notifies' => $notify
+        $id_user = Auth::user()->id;
+        
+        $notifies = Notify::where('user_id', $id_user)
+        ->get();
+
+        return view('pekerja.notify.index',[
+            'notifies' => $notifies,
         ]);
     }
 
@@ -29,10 +35,7 @@ class AdminNotifiesController extends Controller
      */
     public function create()
     {
-        return view('admin.admin-notifies.create', [
-            'users' => User::all(),
-            'tasks' => Task::all()
-        ]);
+        //
     }
 
     /**
@@ -43,24 +46,7 @@ class AdminNotifiesController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'task_id' => 'required|integer',
-            'user_id' => 'required|integer',
-            'title' => 'required|string',
-            'body' => 'required|string',
-            'image' => 'nullable|image'
-        ]);
-
-        $notification = Notify::create($validatedData);
-
-        if ($request->hasFile('image')) {
-            $request->file('image')->storeAs(
-                '/images',
-                $notification->id . '.' . $request->file('image')->extension()
-            );
-        }
-
-        return redirect()->back()->with('success', 'Notifikasi berhasil ditambahkan!');
+        //
     }
 
     /**
@@ -69,9 +55,16 @@ class AdminNotifiesController extends Controller
      * @param  \App\Models\Notify  $notify
      * @return \Illuminate\Http\Response
      */
-    public function show(Notify $notify)
+    public function show($id)
     {
-        //
+        $notify = Notify::find($id);
+
+        $user = User::where('id', $notify->user_id)->first();
+
+        return view('pekerja.notify.show',[
+            'notify' => $notify,
+            'user' => $user,
+        ]);
     }
 
     /**

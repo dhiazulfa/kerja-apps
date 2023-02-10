@@ -12,7 +12,14 @@ use App\Http\Controllers\AdminEducationsController;
 use App\Http\Controllers\AdminEmployeesController;
 use App\Http\Controllers\AdminClientsController;
 use App\Http\Controllers\AdminNotifiesController;
+
 use App\Http\Controllers\AdminAcceptedTaskController;
+use App\Http\Controllers\AdminEmployeeAcceptedController;
+use App\Http\Controllers\AdminEmployeeRejectedController;
+
+use App\Http\Controllers\ClientEmployeeController;
+
+use App\Http\Controllers\AdminEmployeeDoneController;
 use App\Http\Controllers\AdminTasksController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -20,6 +27,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
 use App\Http\Controllers\DashboardPekerjaController;
+use App\Http\Controllers\EmployeeNotifiesController;
 use App\Http\Controllers\DashboardTaskController;
 
 
@@ -60,11 +68,26 @@ Route::resource('/admin/categories', AdminCategoriesController::class)->middlewa
 
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');
 
+
+Route::resource('/admin/done-task', AdminEmployeeDoneController::class)->middleware('admin');
+
+//
+Route::resource('/admin/accepted-employee', AdminEmployeeAcceptedController::class)->middleware('admin');
+
+//
+Route::resource('/admin/employee-rejected', AdminEmployeeRejectedController::class)->middleware('admin');
+
 //Route User
 Route::resource('/admin/pekerja', AdminEmployeesController::class)->middleware('admin');
 
 //Route Penyedia
 Route::resource('/admin/clients', AdminClientsController::class)->middleware('admin');
+
+//Route Notifikasi
+Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middleware('admin');
+
+//Client Employee
+Route::resource('/admin/clients-employee', ClientEmployeeController::class)->middleware('penyedia');
 
 //Task
 Route::resource('/admin/tasks', AdminTasksController::class)->middleware('admin','penyedia');
@@ -86,3 +109,6 @@ Route::resource('/dashboard', DashboardPekerjaController::class)->middleware('pe
 
 //Route Pekerja Task
 Route::resource('/tasks', DashboardTaskController::class)->middleware('pekerja');
+
+//Notify
+Route::resource('/pekerja/notify', EmployeeNotifiesController::class)->middleware('pekerja');

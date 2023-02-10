@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use App\Models\AcceptedTask;
-use App\Models\Task;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class AdminAcceptedTaskController extends Controller
+class AdminEmployeeDoneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +14,11 @@ class AdminAcceptedTaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        return view('admin.accepted-task.index',[
-        'acceptedTasks' => AcceptedTask::where('status','=', 'inactive')->get(),
-        'employees' => Employee::all(),
-        ]);
-    }
-
-    public function accepted()
-    {   
-        return view('admin.accepted-task.accepted',[
-        'acceptedTasks' => AcceptedTask::where('status','=', 'accepted')->get(),
-        'employees' => Employee::all(),
-        ]);
+    {
+        return view('admin.done-task.index',[
+            'acceptedTasks' => AcceptedTask::where('status','=', 'done')->get(),
+            'employees' => Employee::all(),
+            ]);
     }
 
     /**
@@ -68,16 +59,9 @@ class AdminAcceptedTaskController extends Controller
      * @param  \App\Models\AcceptedTask  $acceptedTask
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AcceptedTask $acceptedTask)
     {
-        $acceptedTask = AcceptedTask::find($id);
-
-        $employee = Employee::where('user_id', $acceptedTask->employee_id)->first();
-
-        return view('admin.accepted-task.edit',[
-            'acceptedTask' => $acceptedTask,
-            'employee' => $employee,
-        ]);
+        //
     }
 
     /**
@@ -87,18 +71,9 @@ class AdminAcceptedTaskController extends Controller
      * @param  \App\Models\AcceptedTask  $acceptedTask
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AcceptedTask $acceptedTask)
     {
-        $acceptedTask = AcceptedTask::find($id);
-        
-        $validatedData = $request->validate([
-            'status' => 'required|string'
-        ]);
-                
-        $acceptedTask->status = $validatedData['status'];
-        $acceptedTask->save();
-    
-        return redirect('/admin/accepted-task')->with('success', 'Task diambil dan akan diverifikasi admin');
+        //
     }
 
     /**

@@ -21,10 +21,16 @@
           </svg> Pelamar Masuk</a>
       </li>
 
-      <li class="nav-item"><a class="nav-link" href="/admin/educations">
+      <li class="nav-item"><a class="nav-link" href="/admin/accepted-employee">
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-education"></use>
         </svg> Pelamar Diterima</a>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/employee-rejected">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+        </svg> Pelamar Ditolak</a>
       </li>
       
       {{-- <li class="nav-item"><a class="nav-link" href="/admin/tasks-setting">
@@ -34,6 +40,18 @@
       </li> --}}
 
         </ul>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/done-task">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+        </svg> Task Selesai</a>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/data-pembayaran">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-dollar"></use>
+        </svg> Pembayaran</a>
       </li>
 
       @endcan
@@ -96,6 +114,15 @@
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
         </svg> Task</a>
       </li>
+
+      @can('penyedia')
+      <li class="nav-item"><a class="nav-link" href="/admin/clients-employee">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
+        </svg> Daftar Pekerja</a>
+      </li>
+      @endcan
+
       @endif
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use App\Models\User;
 use App\Models\Employee;
 use App\Models\AcceptedTask;
-use App\Models\Task;
-use Illuminate\Http\Request;
 
-class AdminAcceptedTaskController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class ClientEmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +19,21 @@ class AdminAcceptedTaskController extends Controller
      */
     public function index()
     {   
-        return view('admin.accepted-task.index',[
-        'acceptedTasks' => AcceptedTask::where('status','=', 'inactive')->get(),
-        'employees' => Employee::all(),
+        $user = Auth::user()->id;
+    
+        $tasks = Task::where('client_id', $user)->get();
+        $taskIds = [];
+    
+        foreach ($tasks as $task) {
+            $taskIds[] = $task->id;
+        }
+        
+        return view('admin.clients-employee.index', [
+            'acceptedTasks' => AcceptedTask::whereIn('task_id', $taskIds)
+            ->whereIn('status',['accepted', 'on_progress', 'done'])
+            ->get()
         ]);
     }
-
-    public function accepted()
-    {   
-        return view('admin.accepted-task.accepted',[
-        'acceptedTasks' => AcceptedTask::where('status','=', 'accepted')->get(),
-        'employees' => Employee::all(),
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -57,9 +61,16 @@ class AdminAcceptedTaskController extends Controller
      * @param  \App\Models\AcceptedTask  $acceptedTask
      * @return \Illuminate\Http\Response
      */
-    public function show(AcceptedTask $acceptedTask)
+    public function show($id)
     {
-        //
+        $acceptedTask = AcceptedTask::find($id);
+
+        $employee = Employee::where('user_id', $acceptedTask->employee_id)->first();
+
+        return view('admin.clients-employee.show',[
+            'acceptedTask' => $acceptedTask,
+            'employee' => $employee,
+        ]);
     }
 
     /**
@@ -74,7 +85,7 @@ class AdminAcceptedTaskController extends Controller
 
         $employee = Employee::where('user_id', $acceptedTask->employee_id)->first();
 
-        return view('admin.accepted-task.edit',[
+        return view('admin.clients-employee.edit',[
             'acceptedTask' => $acceptedTask,
             'employee' => $employee,
         ]);
@@ -92,13 +103,23 @@ class AdminAcceptedTaskController extends Controller
         $acceptedTask = AcceptedTask::find($id);
         
         $validatedData = $request->validate([
-            'status' => 'required|string'
+            'status' => 'required|string',
+            'foto_bukti' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        
+        if ($request->hasFile('foto_bukti')) {
+            $image = $request->file('foto_bukti');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            
+            $acceptedTask->foto_bukti = $name;
+        }
                 
         $acceptedTask->status = $validatedData['status'];
         $acceptedTask->save();
     
-        return redirect('/admin/accepted-task')->with('success', 'Task diambil dan akan diverifikasi admin');
+        return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan dan foto bukti berhasil diubah!');
     }
 
     /**

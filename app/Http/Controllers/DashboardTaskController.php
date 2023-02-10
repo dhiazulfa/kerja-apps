@@ -19,8 +19,9 @@ class DashboardTaskController extends Controller
     public function index()
     {   
         $id_user = Auth::user()->id;
+        
         $tasks = AcceptedTask::where('employee_id', $id_user)
-        ->where('status', 'accepted')
+        ->whereIn('status', ['accepted', 'on_progress'])
         ->get();
 
         return view('pekerja.tasks.index',[
