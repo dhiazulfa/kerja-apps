@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Daftar Pelamar Pekerjaan</h1>
+    <h1 class="h2">Pelamar Diterima</h1>
   </div>
 @if(session()->has('success'))
 
@@ -59,6 +59,3 @@
     </div>
     </div>
     @endsection
-    
-    
-    

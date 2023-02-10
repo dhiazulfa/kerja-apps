@@ -13,6 +13,15 @@
         @csrf
 
         <div class="mb-3 col-md-4">
+            <label for="status" class="form-label">Status Users</label>
+            <select class="form-control @error('status') is-invalid @enderror" name="status" required>
+              <option value="">Pilih Salah Satu</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+        </div>
+
+        <div class="mb-3 col-md-4">
             <label for="name" class="form-label">Nama</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $name }}" readonly>
             @error('name')
@@ -121,15 +130,6 @@
                 {{$message}}
               </div>
             @enderror
-        </div>
-
-        <div class="mb-3 col-md-4">
-            <label for="status" class="form-label">Status Users</label>
-            <select class="form-control @error('status') is-invalid @enderror" name="status" required>
-              <option value="">Pilih Salah Satu</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Status</button>

@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Daftar Pelamar Pekerjaan</h1>
+    <h1 class="h2">Pelamar Diterima</h1>
   </div>
 @if(session()->has('success'))
 
@@ -17,14 +17,12 @@
           <tr>
             <th>No</th>
             <th>Pelamar</th>
-            <th>Jenis Pekerjaan</th>
+            <th>Pekerjaan</th>
+            <th>Lama Pekerjaan</th>
             <th>Tanggal Mulai</th>
-            <th>Tanggal Selesai</th>
             <th>Penawaran</th>
             <th>Status</th>
-            @if(Auth::user()->role == 'admin')
             <th>Action</th>
-            @endif
           </tr>
         </thead>
         <tbody>
@@ -33,13 +31,17 @@
               <td>{{ $loop->iteration }}</td>
               <td>{{ $task->employee->name}}</td>
               <td>{{ $task->task->title }}</td>
+              <td>{{ $task->task->waktu_pekerjaan }}</td>
               <td>{{ $task->task->tgl_mulai }}</td>
-              <td>{{ $task->task->tgl_selesai }}</td>
               <td> @currency($task->task->price),-</td>
               <td>{{ $task->status }}</td>
-              @if(Auth::user()->role == 'admin')
               <td>
-                  <a href="/admin/accepted-task/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
+                
+                <a href="/admin/clients-employee/{{ $task->id }}" class="badge bg-info"><span><svg class="icon me">
+                    <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg></span></a>
+
+                  <a href="/admin/clients-employee/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                   </svg></span></a>
                   
@@ -51,7 +53,6 @@
                     </svg></span></button>
                   </form> --}}
               </td>
-              @endif
             </tr>
             @endforeach
         </tbody>
@@ -59,6 +60,3 @@
     </div>
     </div>
     @endsection
-    
-    
-    

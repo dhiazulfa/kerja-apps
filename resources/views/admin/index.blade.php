@@ -10,7 +10,9 @@
     @if(Auth::user()->status == 'inactive')
      <p>Akun belum active</p>
     @else
-    <div class="container-lg">
+    <h1>Selamat Datang</h1>
+    <h4>Anda login sebagai {{ Auth::user()->name }}</h4>
+    {{-- <div class="container-lg">
       <div class="row">
         <div class="col-sm-6 col-lg-3">
           <div class="card mb-4 text-white bg-primary">
@@ -112,7 +114,7 @@
           </div>
         </div>
         <!-- /.col-->
-      </div>
+      </div> --}}
 
       {{-- <!-- /.row-->
       <div class="card mb-4">

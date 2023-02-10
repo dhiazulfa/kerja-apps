@@ -12,18 +12,27 @@
       <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
     </ul>
     <ul class="header-nav ms-auto">
-      <li class="nav-item"><a class="nav-link" href="#">
+      {{-- <li class="nav-item"><a class="nav-link" href="#">
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
           </svg></a></li>
       <li class="nav-item"><a class="nav-link" href="#">
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-          </svg></a></li>
-      <li class="nav-item"><a class="nav-link" href="#">
+          </svg></a></li> --}}
+      @if(Auth::user()->role == 'admin')
+      <li class="nav-item"><a class="nav-link" href="/admin/admin-notifies">
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-          </svg></a></li>
+          </svg></a>
+      </li>
+      @else
+      {{-- <li class="nav-item"><a class="nav-link" href="/admin/notifies">
+        <svg class="icon icon-lg">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+        </svg></a>
+      </li> --}}
+      @endif
     </ul>
     <ul class="header-nav ms-3">
       <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,15 +45,15 @@
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
             </svg> Profile</a><a class="dropdown-item" href="#">
-            <svg class="icon me-2">
+            {{-- <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-            </svg> Settings</a><a class="dropdown-item" href="#">
-            <svg class="icon me-2">
+            </svg> Settings</a><a class="dropdown-item" href="#"> --}}
+            {{-- <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
             </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-            </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
+            </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a> --}}
           <div class="dropdown-divider"></div>
           <form action="/logout" method="POST">
             @csrf
