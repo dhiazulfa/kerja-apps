@@ -48,10 +48,16 @@
         </svg> Task Selesai</a>
       </li>
 
-      <li class="nav-item"><a class="nav-link" href="/admin/data-pembayaran">
+      <li class="nav-item"><a class="nav-link" href="/admin/admin-payments">
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-dollar"></use>
-        </svg> Pembayaran</a>
+        </svg> Pembayaran Penyedia</a>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/data-pembayaran">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-money"></use>
+        </svg> Pembayaran Pekerja</a>
       </li>
 
       @endcan
@@ -120,6 +126,12 @@
         <svg class="nav-icon">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
         </svg> Daftar Pekerja</a>
+      </li>
+
+      <li class="nav-item"><a class="nav-link" href="/admin/clients-payment">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-dollar"></use>
+        </svg> Daftar Pembayaran</a>
       </li>
       @endcan
 

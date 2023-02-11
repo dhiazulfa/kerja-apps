@@ -16,8 +16,10 @@ use App\Http\Controllers\AdminNotifiesController;
 use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
+use App\Http\Controllers\AdminPaymentController;
 
 use App\Http\Controllers\ClientEmployeeController;
+use App\Http\Controllers\ClientsPaymentController;
 
 use App\Http\Controllers\AdminEmployeeDoneController;
 use App\Http\Controllers\AdminTasksController;
@@ -66,7 +68,14 @@ Route::get('/admin', function(){
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
 
+//Admin accepted task data
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');
+
+//Admin payment
+Route::resource('/admin/admin-payments', AdminPaymentController::class)->middleware('admin');
+
+//Penyedia make payment 
+Route::resource('/admin/clients-payment', ClientsPaymentController::class)->middleware('penyedia');
 
 
 Route::resource('/admin/done-task', AdminEmployeeDoneController::class)->middleware('admin');
