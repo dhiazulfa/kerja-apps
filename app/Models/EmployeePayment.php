@@ -11,13 +11,13 @@ class EmployeePayment extends Model
     protected $guarded = ['id'];
 
     protected $fillable = ['rekening_id', 'accepted_id', 'jumlah', 'bukti_pembayaran'];
-    protected $with     = ['acceptedTask','rekening'];
+    //protected $with     = ['acceptedTask','rekening'];
 
     public function rekening(){
         return $this->belongsTo(Rekening::class);
     }
 
-    public function acceptedTask(){
-        return $this->belongsTo(AcceptedTask::class);
+    public function task(){
+        return $this->belongsTo(AcceptedTask::class,'accepted_id','id');
     }
 }

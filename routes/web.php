@@ -30,6 +30,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
+use App\Http\Controllers\DashboardPaymentsController;
 use App\Http\Controllers\DashboardPekerjaController;
 use App\Http\Controllers\DashboardRekeningController;
 use App\Http\Controllers\EmployeeNotifiesController;
@@ -130,3 +131,6 @@ Route::resource('/pekerja/notify', EmployeeNotifiesController::class)->middlewar
 
 //Rekening
 Route::resource('/pekerja/rekening', DashboardRekeningController::class)->middleware('pekerja');
+
+//Payment Pegawai
+Route::resource('/pekerja/payments', DashboardPaymentsController::class)->middleware('pekerja');
