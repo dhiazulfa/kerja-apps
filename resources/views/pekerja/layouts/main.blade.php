@@ -64,8 +64,8 @@
           @yield('container')
     </div>
     <footer class="footer">
-      <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023</div>
-      <div class="ms-auto">Powered by&nbsp;<a href="http://omah-ti.id/">Omah Technology Indonesia</a></div>
+      <div class="ms-auto"><a href="#">DailyWorker</a> © 2023</div>
+      <!-- <div class="ms-auto">Powered by&nbsp;<a href="http://omah-ti.id/">Omah Technology Indonesia</a></div> -->
     </footer>
 
     <!-- CoreUI and necessary plugins-->
