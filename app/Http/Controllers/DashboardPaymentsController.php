@@ -20,18 +20,21 @@ class DashboardPaymentsController extends Controller
     public function index()
     {
         $user = Auth::user();
-
+    
         $employee = Employee::where('user_id', $user->id)->first();
     
         $rekening = Rekening::where('employee_id', $employee->id)->first();
+        
+        if ($rekening) {
+            $payments = EmployeePayment::where('rekening_id', $rekening->id)->get();
+        } else {
+            $payments = [];
+        }
     
-        $payments = EmployeePayment::where('rekening_id', $rekening->id)->get();
-
         return view('pekerja.payments.index', [
             'payments' => $payments
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *

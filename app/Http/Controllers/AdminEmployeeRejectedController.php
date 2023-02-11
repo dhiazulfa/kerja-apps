@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcceptedTask;
-use App\Models\Employee;
+use App\Models\Employee;    
 use Illuminate\Http\Request;
 
 class AdminEmployeeRejectedController extends Controller

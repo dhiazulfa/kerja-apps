@@ -17,11 +17,13 @@
           </svg> Accepted Task</a>
       </li>
 
-      <li class="nav-item"><a class="nav-link" href="/pekerja/payments">
-        <svg class="nav-icon">
-          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-money"></use>
-        </svg> Data Pembayaran</a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/pekerja/payments">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-money"></use>
+          </svg> Data Pembayaran
+        </a>
+      </li>
 
       <li class="nav-item"><a class="nav-link" href="/pekerja/rekening">
           <svg class="nav-icon">
