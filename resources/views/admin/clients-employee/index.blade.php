@@ -41,8 +41,12 @@
                     <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                     </svg></span></a>
 
+                    <a href="/admin/clients-payment/{{ $task->id }}/edit" class="badge bg-success"><span><svg class="icon me">
+                      <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-dollar"></use>
+                    </svg></span></a>
+
                   <a href="/admin/clients-employee/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
-                  <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                    <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                   </svg></span></a>
                   
                   {{-- <form action="/admin/tasks/{{ $task->slug }}" method="POST" class="d-inline">

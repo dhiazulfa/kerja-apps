@@ -30,4 +30,10 @@ class Client extends Model
     public function task(){
         return $this->hasMany(Task::class);
     }
+
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
+
+
 }

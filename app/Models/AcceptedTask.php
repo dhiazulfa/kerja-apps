@@ -21,4 +21,8 @@ class AcceptedTask extends Model
     public function task(){
         return $this->belongsTo(Task::class);
     }
+
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
 }
