@@ -10,7 +10,13 @@
   <div class="alert alert-success col-lg-10" role="alert">
     {{session('success')}}
   </div>
-  @endif
+@endif
+
+@if(isset($error_message))
+  <div class="alert alert-danger">
+    {{ $error_message }}
+  </div>
+@else
     <div class="table-responsive col-lg-12">
       <table class="table table-bordered table-lg-12">
         <thead>
@@ -23,7 +29,7 @@
             <th>Status Pembayaran</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody>            
             @foreach($payments as $payment)
             <tr>
               <td>{{ $loop->iteration }}</td>
@@ -38,4 +44,5 @@
       </table>
     </div>
     </div>
+@endif
     @endsection
