@@ -18,6 +18,8 @@ use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
 use App\Http\Controllers\AdminPaymentController;
 
+use App\Http\Controllers\EmployeePaymentsController;
+
 use App\Http\Controllers\ClientEmployeeController;
 use App\Http\Controllers\ClientsPaymentController;
 
@@ -29,6 +31,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
 use App\Http\Controllers\DashboardPekerjaController;
+use App\Http\Controllers\DashboardRekeningController;
 use App\Http\Controllers\EmployeeNotifiesController;
 use App\Http\Controllers\DashboardTaskController;
 
@@ -73,6 +76,9 @@ Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->mid
 
 //Admin payment
 Route::resource('/admin/admin-payments', AdminPaymentController::class)->middleware('admin');
+
+//Admin make payment
+Route::resource('/admin/data-pembayaran', EmployeePaymentsController::class)->middleware('admin');
 
 //Penyedia make payment 
 Route::resource('/admin/clients-payment', ClientsPaymentController::class)->middleware('penyedia');
@@ -121,3 +127,6 @@ Route::resource('/tasks', DashboardTaskController::class)->middleware('pekerja')
 
 //Notify
 Route::resource('/pekerja/notify', EmployeeNotifiesController::class)->middleware('pekerja');
+
+//Rekening
+Route::resource('/pekerja/rekening', DashboardRekeningController::class)->middleware('pekerja');

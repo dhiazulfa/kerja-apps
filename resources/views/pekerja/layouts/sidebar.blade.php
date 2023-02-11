@@ -16,6 +16,12 @@
           </svg> Accepted Task</a>
       </li>
 
+      <li class="nav-item"><a class="nav-link" href="/pekerja/rekening">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-bank"></use>
+          </svg> Daftar Rekening</a>
+      </li>
+
     </ul>
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
   </div>
