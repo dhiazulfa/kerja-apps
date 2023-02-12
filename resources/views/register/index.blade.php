@@ -203,11 +203,11 @@
                   Foto Ijazah Terakhir</span> -->
                 <input id="file-ijazah" class="form-control" type="file" name="foto_ijazah_terakhir" placeholder="Foto Ijazah Terakhir" requiered>
                 </div>
-                <label for="file-sertifikasi" class="form-label">Foto Sertifikasi Keahlian</label>
+                <label for="file-sertifikasi" class="form-label">Foto Sertifikasi Keahlian (Apabila Memiliki)</label>
                 <div class="input-group mb-3">
                   <!-- <span class="input-group-text">
                   Foto Sertifikasi Keahlian</span> -->
-                <input id="file-sertifikasi" class="form-control" type="file" name="foto_sertifikat_pengalaman" placeholder="Foto Sertifikat Keahlian" requiered>
+                <input id="file-sertifikasi" class="form-control" type="file" name="foto_sertifikat_pengalaman">
                 </div>
 
                 <button class="btn btn-block btn-primary" type="submit">Create Account</button>

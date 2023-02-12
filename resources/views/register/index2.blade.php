@@ -123,15 +123,14 @@
                 <div class="input-group mb-3">
                   <span class="input-group-text">
                     <svg class="icon">
-                      <!-- <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use> -->
+                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
                     </svg>
                   </span>
                   <textarea id="more-information" class="form-control row-5 @error('keterangan_tambahan') is-invalid @enderror" name="keterangan_tambahan" placeholder="Keterangan Tambahan" requiered>{{old('keterangan_tambahan')}}</textarea>
                 </div>
-                <label for="company-photo" class="form-label">Foto Katntorr</label>
+
+                <label for="company-photo" class="form-label">Foto Kantor</label>
                 <div class="input-group mb-3">
-                  <!-- <span class="input-group-text">
-                  Foto Kantor</span> -->
                 <input id="company-photo" class="form-control" type="file" name="foto_kantor" placeholder="Foto Kantor" requiered>
                 </div>
                 <label for="logo" class="form-label">Logo</label>
