@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmployeePayment;
+use App\Models\Employee;
+use App\Models\Rekening;
 use App\Models\AcceptedTask;
-use App\Models\Employee;    
 use Illuminate\Http\Request;
 
-class AdminEmployeeRejectedController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class DashboardPaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +19,22 @@ class AdminEmployeeRejectedController extends Controller
      */
     public function index()
     {
-        return view('admin.employee-rejected.index',[
-            'acceptedTasks' => AcceptedTask::where('status','=', 'ditolak')->get(),
-            'employees' => Employee::all(),
-            ]);
+        $user = Auth::user();
+    
+        $employee = Employee::where('user_id', $user->id)->first();
+    
+        $rekening = Rekening::where('employee_id', $employee->id)->first();
+        
+        if ($rekening) {
+            $payments = EmployeePayment::where('rekening_id', $rekening->id)->get();
+        } else {
+            $payments = [];
+        }
+    
+        return view('pekerja.payments.index', [
+            'payments' => $payments
+        ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,10 +59,10 @@ class AdminEmployeeRejectedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AcceptedTask  $acceptedTask
+     * @param  \App\Models\EmployeePayment  $employeePayment
      * @return \Illuminate\Http\Response
      */
-    public function show(AcceptedTask $acceptedTask)
+    public function show(EmployeePayment $employeePayment)
     {
         //
     }
@@ -56,10 +70,10 @@ class AdminEmployeeRejectedController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AcceptedTask  $acceptedTask
+     * @param  \App\Models\EmployeePayment  $employeePayment
      * @return \Illuminate\Http\Response
      */
-    public function edit(AcceptedTask $acceptedTask)
+    public function edit(EmployeePayment $employeePayment)
     {
         //
     }
@@ -68,10 +82,10 @@ class AdminEmployeeRejectedController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AcceptedTask  $acceptedTask
+     * @param  \App\Models\EmployeePayment  $employeePayment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcceptedTask $acceptedTask)
+    public function update(Request $request, EmployeePayment $employeePayment)
     {
         //
     }
@@ -79,10 +93,10 @@ class AdminEmployeeRejectedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AcceptedTask  $acceptedTask
+     * @param  \App\Models\EmployeePayment  $employeePayment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AcceptedTask $acceptedTask)
+    public function destroy(EmployeePayment $employeePayment)
     {
         //
     }

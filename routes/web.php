@@ -16,8 +16,12 @@ use App\Http\Controllers\AdminNotifiesController;
 use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
+use App\Http\Controllers\AdminPaymentController;
+
+use App\Http\Controllers\EmployeePaymentsController;
 
 use App\Http\Controllers\ClientEmployeeController;
+use App\Http\Controllers\ClientsPaymentController;
 
 use App\Http\Controllers\AdminEmployeeDoneController;
 use App\Http\Controllers\AdminTasksController;
@@ -26,7 +30,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
+use App\Http\Controllers\DashboardPaymentsController;
 use App\Http\Controllers\DashboardPekerjaController;
+use App\Http\Controllers\DashboardRekeningController;
 use App\Http\Controllers\EmployeeNotifiesController;
 use App\Http\Controllers\DashboardTaskController;
 
@@ -66,7 +72,17 @@ Route::get('/admin', function(){
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
 
+//Admin accepted task data
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');
+
+//Admin payment
+Route::resource('/admin/admin-payments', AdminPaymentController::class)->middleware('admin');
+
+//Admin make payment
+Route::resource('/admin/data-pembayaran', EmployeePaymentsController::class)->middleware('admin');
+
+//Penyedia make payment 
+Route::resource('/admin/clients-payment', ClientsPaymentController::class)->middleware('penyedia');
 
 
 Route::resource('/admin/done-task', AdminEmployeeDoneController::class)->middleware('admin');
@@ -112,3 +128,9 @@ Route::resource('/tasks', DashboardTaskController::class)->middleware('pekerja')
 
 //Notify
 Route::resource('/pekerja/notify', EmployeeNotifiesController::class)->middleware('pekerja');
+
+//Rekening
+Route::resource('/pekerja/rekening', DashboardRekeningController::class)->middleware('pekerja');
+
+//Payment Pegawai
+Route::resource('/pekerja/payments', DashboardPaymentsController::class)->middleware('pekerja');
