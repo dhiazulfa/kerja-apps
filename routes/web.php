@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
 use App\Http\Controllers\AdminPaymentController;
+use App\Http\Controllers\AdminProfileController;
 
 use App\Http\Controllers\EmployeePaymentsController;
 
@@ -71,6 +72,9 @@ Route::get('/admin', function(){
 
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
+
+//edit profile admin dan penyedia
+Route::resource('/admin/profile', AdminProfileController::class)->middleware('admin', 'penyedia');
 
 //Admin accepted task data
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');

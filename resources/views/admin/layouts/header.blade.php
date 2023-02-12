@@ -5,9 +5,9 @@
         <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
       </svg>
     </button><a class="header-brand d-md-none" href="#">
-      <!-- <svg width="118" height="46" alt="CoreUI Logo">
+      <svg width="118" height="46" alt="CoreUI Logo">
         <use xlink:href="/assets/brand/coreui.svg#full"></use>
-      </svg></a> -->
+      </svg></a>
     <ul class="header-nav d-none d-md-flex">
       <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
     </ul>
@@ -44,7 +44,7 @@
           </div><a class="dropdown-item" href="#">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> Profile</a><a class="dropdown-item" href="#">
+            </svg> Profile</a><a class="dropdown-item" href="/admin/profile">
             {{-- <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
             </svg> Settings</a><a class="dropdown-item" href="#"> --}}

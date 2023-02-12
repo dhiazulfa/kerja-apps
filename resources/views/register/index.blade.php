@@ -207,7 +207,7 @@
                 <div class="input-group mb-3">
                   <!-- <span class="input-group-text">
                   Foto Sertifikasi Keahlian</span> -->
-                <input id="file-sertifikasi" class="form-control" type="file" name="foto_sertifikat_pengalaman">
+                <input id="file-sertifikasi" class="form-control" type=" " name="foto_sertifikat_pengalaman">
                 </div>
 
                 <button class="btn btn-block btn-primary" type="submit">Create Account</button>

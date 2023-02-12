@@ -4,11 +4,11 @@
 
 <div class="container-fluid">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">User Details</h1>
+    <h1 class="h2">Edit Profile</h1>
 </div>
 
 <div class="col-lg-12">
-    <form method="POST" action="/admin/clients/{{$client->id}}" class="mb-5">
+    <form method="POST" action="/admin/profile/{{$client->id}}" class="mb-5">
       @method('put')
         @csrf
 
