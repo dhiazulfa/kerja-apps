@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>landing page</title>
+    <title>DailyWorker</title>
 </head>
 
 <body>
@@ -17,14 +17,15 @@
         class="bg-opacity-100 backdrop-blur">
     </div>
     <!-- navbar -->
-    <nav class="navbar navbar-light fixed-top bg-dark bg-gradient bg-opacity-75">
+    <nav class="navbar navbar-light fixed-top bg-gradient bg-opacity-25" style="background-color: #303C54">
         <div class="container">
-            <div>
+            <!-- <div> -->
                 <a class="navbar-brand" href="#">
-                    <img src="assets/img/logo_sipegawai.png" alt="images" width="full" height="24"
-                        class="d-inline-block align-text-top">
+                    <img src="assets/img/Company.png" alt="images" width="28" height="28"
+                        class="d-inline-block align-text-top"></img>
+                        <span class="mx-1 fw-bold" style="color: #FFFFFF">Daily Worker</span>
                 </a>
-            </div>
+            <!-- </div> -->
             <a class="btn btn-primary" href="/login" >Login</a>
         </div>
     </nav>

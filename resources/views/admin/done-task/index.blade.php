@@ -22,9 +22,6 @@
             <th>Tanggal Selesai</th>
             <th>Penawaran</th>
             <th>Status</th>
-            @if(Auth::user()->role == 'admin')
-            <th>Action</th>
-            @endif
           </tr>
         </thead>
         <tbody>
@@ -37,21 +34,6 @@
               <td>{{ $task->task->tgl_selesai }}</td>
               <td> @currency($task->task->price),-</td>
               <td>{{ $task->status }}</td>
-              @if(Auth::user()->role == 'admin')
-              <td>
-                  <a href="/admin/accepted-task/{{ $task->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
-                  <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                  </svg></span></a>
-                  
-                  {{-- <form action="/admin/tasks/{{ $task->slug }}" method="POST" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span><svg class="icon me">
-                      <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
-                    </svg></span></button>
-                  </form> --}}
-              </td>
-              @endif
             </tr>
             @endforeach
         </tbody>

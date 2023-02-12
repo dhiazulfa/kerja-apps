@@ -57,12 +57,12 @@
     </script>
   </head>
   <body>
-    <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <div class="bg-gradient bg-opacity-50  min-vh-100 d-flex flex-row align-items-center" style="background-color: #EBEDEF">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div class="card-group d-block d-md-flex row">
-              <div class="card col-md-7 p-4 mb-0">
+              <div class="card col-md-7 p-4 mb-0" style="background-color: #FFFFF">
                 <div class="card-body">
                   <h1>Login</h1>
                   <p class="text-medium-emphasis">Sign In to your account</p>
@@ -119,13 +119,14 @@
                   
                 </div>
               </div>
-              <div class="card col-md-5 text-white bg-primary py-5">
+              <div class="card col-md-5 text-white bg-gradient bg-opacity-75 py-5" style="background-color: #3C4B64">
                 <div class="card-body text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <img class="mb-4" src="assets/img/omtech.jpeg" alt="" width="230" height="230">
+                    <h2 class="fw-bold">Sign up</h2>
+                    <div class="my-2">
+                    <img src="assets/img/Company.png" alt="" width="160" height="160">
+                    <h5 class="fw-bold" style="color:#f2ee07" > Daily Worker</h5>
+                     </div>
                     <a class="btn btn-lg btn-outline-light mt-3" type="button" href="/register">Register Now!</a>
-                  </div>
                 </div>
               </div>
             </div>
