@@ -55,13 +55,16 @@ class AdminTasksController extends Controller
         'slug' => 'required|string|unique:tasks',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'body' => 'required|string',
+        'alamat' => 'required|string',
+        'link_maps' => 'required|string',
         'waktu_pekerjaan' => 'required|string',
         'jam_masuk' => 'required|date_format:H:i:s',
         'jam_selesai' => 'required|date_format:H:i:s',
         'tgl_mulai' => 'required|date',
         'tgl_selesai' => 'required|date',
         'punishment' => 'required',
-        'price' => 'required|numeric'
+        'price' => 'required|numeric',
+        'jumlah_pekerja' => 'required|numeric'
     ]);
 
     $client_id = Auth::user()->id;
@@ -72,6 +75,8 @@ class AdminTasksController extends Controller
         'slug' => $validatedData['slug'],
         'image' => $validatedData['image'],
         'body' => $validatedData['body'],
+        'alamat' => $validatedData['alamat'],
+        'link_maps' => $validatedData['link_maps'],
         'waktu_pekerjaan' => $validatedData['waktu_pekerjaan'],
         'status' => 'inactive',
         'jam_masuk' => $validatedData['jam_masuk'],
@@ -79,7 +84,8 @@ class AdminTasksController extends Controller
         'tgl_mulai' => $validatedData['tgl_mulai'],
         'tgl_selesai' => $validatedData['tgl_selesai'],
         'punishment' => $validatedData['punishment'],
-        'price' => $validatedData['price']
+        'price' => $validatedData['price'],
+        'jumlah_pekerja' => $validatedData['jumlah_pekerja']
     ]);
 
     $task['excerpt'] = Str::limit(strip_tags($request->body), 100);

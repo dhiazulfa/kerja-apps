@@ -23,15 +23,24 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="foto_bukti" class="form-label">Foto Bukti</label>
-            <input type="file" class="form-control @error('foto_bukti') is-invalid @enderror" id="foto_bukti" name="foto_bukti" value="{{old('foto_bukti')}}" required>
-            @error('foto_bukti')
-              <div class="invalid-feedback">
-                {{$message}}
-              </div>
-            @enderror
+        @if($acceptedTask->status == 'accepted' || $acceptedTask->status == 'done')
+
+        @else
+        <div class="mb-3 col-md-4">
+          <label for="title" class="form-label">Rating (1-10) </label>
+          <input type="number" class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating" value="{{old('rating')}}" required>
+          @error('rating')
+            <div class="invalid-feedback">
+              {{$message}}
+            </div>
+          @enderror
         </div>
+
+        <div class="mb-3">
+          <label for="catatan_pekerjaan" class="form-label">Catatan Pekerjaan</label>
+          <textarea class="form-control row-10 @error('catatan_pekerjaan') is-invalid @enderror" name="catatan_pekerjaan" requiered>{{old('catatan_pekerjaan')}}</textarea>
+        </div>
+        @endif
 
         <button type="submit" class="btn btn-primary">Update Status</button>
     </form>
@@ -39,14 +48,5 @@
     
 </div>
 </div>
-<script>
- const title  = document.querySelector('#title');
- const slug   = document.querySelector('#slug');
- title.addEventListener('change', function(){
-  fetch('/admin/competencies/checkSlug?title=' + title.value)
-  .then(response => response.json())
-  .then(data => slug.value = data.slug)
- });
-</script>
 
 @endsection

@@ -16,13 +16,19 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id');
+            $table->foreignId('region_id');
+            $table->foreignId('subregion_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->text('excerpt');
             $table->text('body');
+            $table->text('alamat');
+            $table->string('link_maps')->nulllable();
+            $table->int('jumlah_kebutuhan');
             $table->string('waktu_pekerjaan');
-            $table->enum('status', ['active','inactive'])->default('inactive');
+            $table->enum('status', ['active','inactive','ditutup'])->default('inactive');
+            $table->enum('jk_pekerja', ['pria','wanita','semua'])->default('inactive');
             $table->time('jam_masuk');
             $table->time('jam_selesai');
             $table->date('tgl_mulai');

@@ -41,19 +41,13 @@
         <div class="dropdown-menu dropdown-menu-end pt-0">
           <div class="dropdown-header bg-light py-2">
             <div class="fw-semibold">Settings</div>
-          </div><a class="dropdown-item" href="#">
+          </div>
+          <a class="dropdown-item" href="/admin/profile/{{ Auth::user()->id }}/edit">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> Profile</a><a class="dropdown-item" href="/admin/profile">
-            {{-- <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-            </svg> Settings</a><a class="dropdown-item" href="#"> --}}
-            {{-- <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-            </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
-            <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-            </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a> --}}
+            </svg> Profile
+          </a>
+            
           <div class="dropdown-divider"></div>
           <form action="/logout" method="POST">
             @csrf
@@ -62,6 +56,7 @@
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
             </svg> Logout</button>
           </form>
+
         </div>
       </li>
     </ul>

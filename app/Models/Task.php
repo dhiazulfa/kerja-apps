@@ -12,7 +12,9 @@ class Task extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'client_id', 
+        'client_id',
+        'region_id',
+        'subregion_id',
         'title', 
         'slug', 
         'image', 
@@ -20,8 +22,12 @@ class Task extends Model
         'body', 
         'waktu_pekerjaan',
         'status',
+        'alamat',
+        'link_maps',
+        'jumlah_kebutuhan',
         'jam_masuk',
         'jam_selesai',
+        'jk_pekerja',
         'tgl_mulai',
         'tgl_selesai', 
         'punishment',
@@ -33,6 +39,15 @@ class Task extends Model
     public function client(){
         return $this->belongsTo(Client::class,'client_id', 'id');
     }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
+
+    public function subregion(){
+        return $this->belongsTo(Subregion::class);
+    }
+
 
     public function acceptedTask(){
         return $this->belongsTo(AcceptedTask::class);

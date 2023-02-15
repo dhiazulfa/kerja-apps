@@ -104,22 +104,12 @@ class ClientEmployeeController extends Controller
         
         $validatedData = $request->validate([
             'status' => 'required|string',
-            'foto_bukti' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-        if ($request->hasFile('foto_bukti')) {
-            $image = $request->file('foto_bukti');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
-            
-            $acceptedTask->foto_bukti = $name;
-        }
                 
         $acceptedTask->status = $validatedData['status'];
         $acceptedTask->save();
     
-        return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan dan foto bukti berhasil diubah!');
+        return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
     }
 
     /**

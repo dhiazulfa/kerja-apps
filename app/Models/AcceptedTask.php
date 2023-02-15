@@ -11,7 +11,7 @@ class AcceptedTask extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['task_id', 'employee_id', 'status', 'foto_bukti'];
+    protected $fillable = ['task_id', 'employee_id', 'status', 'rating', 'catatan_pekerjaan'];
     protected $with = ['task', 'employee'];
 
     public function employee(){
