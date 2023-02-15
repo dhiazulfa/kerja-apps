@@ -40,6 +40,65 @@
     </div>
 
     <div class="mb-3 col-lg-4">
+      <label for="umur_min" class="form-label">Umur Minimal Pekerja</label>
+      <input type="number" class="form-control @error('umur_min') is-invalid @enderror" id="umur_min" name="umur_min" value="{{old('umur_min')}}" required>
+      @error('umur_min')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <div class="mb-3 col-lg-4">
+      <label for="umur_max" class="form-label">Umur Maximal Pekerja</label>
+      <input type="number" class="form-control @error('umur_max') is-invalid @enderror" id="umur_max" name="umur_max" value="{{old('umur_max')}}" required>
+      @error('umur_max')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+      @enderror
+    </div>
+
+    <label for="jk_pekerja" class="form-label">Jenis Kelamin Pekerja yang dibutuhkan</label>
+    <select class="form-control @error('jk_pekerja') is-invalid @enderror" name="jk_pekerja" required>
+      <option value="">Pilih Salah Satu</option>
+      <option value="pria">Pria</option>
+      <option value="wanita">Wanita</option>
+      <option value="semua">Pria/Wanita</option>
+      </select>
+    </div>
+
+    <label for="study" class="form-label">Provinsi</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">
+        <svg class="icon">
+          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
+        </svg>
+      </span>
+      <select id="study" class="form-control @error('region_id') is-invalid @enderror" name="region_id" required>
+        <option value="region_id">-- Pilih Daerah Lowongan --</option>
+          @foreach($regions as $region)
+        <option value="{{$region->id}}" {{old('region_id') == $region->id ? 'selected' : ''}}>{{$region->name}}</option>
+          @endforeach
+      </select>
+    </div>
+
+    <label for="study" class="form-label">Kabupaten</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">
+        <svg class="icon">
+          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
+        </svg>
+      </span>
+      <select id="study" class="form-control @error('subregion_id') is-invalid @enderror" name="subregion_id" required>
+        <option value="subregion_id">-- Pilih Kabupaten Lowongan --</option>
+          @foreach($subregions as $subregion)
+        <option value="{{$subregion->id}}" {{old('subregion_id') == $region->id ? 'selected' : ''}}>{{$subregion->name}}</option>
+          @endforeach
+      </select>
+    </div>
+
+    <div class="mb-3 col-lg-4">
         <label for="waktu_pekerjaan" class="form-label">Waktu Pekerjaan</label>
         <select class="form-control @error('waktu_pekerjaan') is-invalid @enderror" name="waktu_pekerjaan" required>
           <option value="">Pilih Salah Satu</option>

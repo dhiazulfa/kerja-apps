@@ -101,15 +101,30 @@ class ClientEmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $acceptedTask = AcceptedTask::find($id);
-        
-        $validatedData = $request->validate([
-            'status' => 'required|string',
-        ]);
-                
-        $acceptedTask->status = $validatedData['status'];
-        $acceptedTask->save();
+            
+        if ($acceptedTask->status == 'accepted') {
+            $validatedData = $request->validate([
+                'status' => 'required|string',
+            ]);
     
-        return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
+            $acceptedTask->status = $validatedData['status'];
+            $acceptedTask->save();
+    
+            return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
+        } else {
+            $validatedData = $request->validate([
+                'status' => 'required|string',
+                'rating' => 'required|integer',
+                'catatan_pekerjaan' => 'required',
+            ]);
+    
+            $acceptedTask->status = $validatedData['status'];
+            $acceptedTask->rating = $validatedData['rating'];
+            $acceptedTask->catatan_pekerjaan = $validatedData['catatan_pekerjaan'];
+            $acceptedTask->save();
+    
+            return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
+        }   
     }
 
     /**

@@ -25,6 +25,8 @@ class Task extends Model
         'alamat',
         'link_maps',
         'jumlah_kebutuhan',
+        'umur_max',
+        'umur_min',
         'jam_masuk',
         'jam_selesai',
         'jk_pekerja',

@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminEducationsController;
 use App\Http\Controllers\AdminEmployeesController;
 use App\Http\Controllers\AdminClientsController;
 use App\Http\Controllers\AdminNotifiesController;
+use App\Http\Controllers\AdminRegionController;
+use App\Http\Controllers\AdminSubregionController;
 
 use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
@@ -72,6 +74,12 @@ Route::get('/admin', function(){
 
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
+
+//Route admin region
+Route::resource('/admin/data-region', AdminRegionController::class)->middleware('admin');
+
+//Route admin sub-region
+Route::resource('/admin/data-subregion', AdminSubregionController::class)->middleware('admin');
 
 //edit profile admin dan penyedia
 Route::resource('/admin/profile', AdminProfileController::class)->middleware('admin', 'penyedia');
