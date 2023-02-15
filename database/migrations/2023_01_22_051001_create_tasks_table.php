@@ -25,9 +25,9 @@ class CreateTasksTable extends Migration
             $table->text('body');
             $table->text('alamat');
             $table->string('link_maps')->nulllable();
-            $table->int('jumlah_kebutuhan');
-            $table->int('umur_min')->nullable();
-            $table->int('umur_max')->nullable();
+            $table->integer('jumlah_kebutuhan');
+            $table->integer('umur_min')->nullable();
+            $table->integer('umur_max')->nullable();
             $table->string('waktu_pekerjaan');
             $table->enum('status', ['active','inactive','ditutup'])->default('inactive');
             $table->enum('jk_pekerja', ['pria','wanita','semua']);
@@ -35,7 +35,7 @@ class CreateTasksTable extends Migration
             $table->time('jam_selesai');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
-            $table->string('punishment');            
+            $table->string('punishment')->nullable();            
             $table->decimal('price',10,2);
             $table->timestamp('publish_at')->nullable();
             $table->timestamps();

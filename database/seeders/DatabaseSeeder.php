@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Education;
+use App\Models\Region;
+use App\Models\Subregion;
 
 class DatabaseSeeder extends Seeder
 {
@@ -45,14 +47,20 @@ class DatabaseSeeder extends Seeder
             'slug' => 'perguruan-tinggi',
         ]);
 
-        Category::create([
-            'name' => 'IT Company',
-            'slug' => 'it-company',
+        Region::create([
+            'nama_provinsi' => 'Daerah Istimewa Yogyakarta',
         ]);
 
-        Category::create([
-          'name' => 'BPO',
-          'slug' => 'bpo',
-      ]);
+        Subregion::create([
+          'nama_kabupaten' => 'Sleman',
+        ]);
+        
+        Subregion::create([
+          'nama_kabupaten' => 'Bantul',
+        ]);
+        
+        Subregion::create([
+          'nama_kabupaten' => 'Kota Yogyakarta',
+        ]);
     }
 }
