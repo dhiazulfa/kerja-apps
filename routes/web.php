@@ -79,7 +79,7 @@ Route::resource('/admin/categories', AdminCategoriesController::class)->middlewa
 Route::resource('/admin/data-region', AdminRegionController::class)->middleware('admin');
 
 //Route admin sub-region
-Route::resource('/admin/data-subregion', AdminSubregionController::class)->middleware('admin');
+Route::resource('/admin/data-sub-region', AdminSubregionController::class)->middleware('admin');
 
 //edit profile admin dan penyedia
 Route::resource('/admin/profile', AdminProfileController::class)->middleware('admin', 'penyedia');

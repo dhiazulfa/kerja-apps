@@ -38,7 +38,7 @@ class AdminRegionController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required | max:255',
+            'nama_provinsi' => 'required | max:255',
         ]);
 
         Region::create($validatedData);
@@ -94,9 +94,14 @@ class AdminRegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
-        Region::destroy($region->id);
+        $region = Region::find($id);
+        if (!$region) {
+            return redirect('/admin/data-region')->with('error', 'Data Provinsi tidak ditemukan.');
+        }
+        $region->delete();
+    
         return redirect('/admin/data-region')->with('success', 'Data Provinsi dihapus!');
     }
 }

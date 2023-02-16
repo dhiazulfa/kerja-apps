@@ -9,7 +9,7 @@
 <div class="col-md-8">
     <form method="POST" action="/admin/data-region" class="mb-5">
         @csrf
-        <div class="mb-3">
+        <div class="mb-3 col-lg-6">
           <label for="name" class="form-label"> Nama Provinsi</label>
           <input type="text" class="form-control @error('nama_provinsi') is-invalid @enderror" id="nama_provinsi" name="nama_provinsi" value="{{old('nama_provinsi')}}" required>
           @error('nama_provinsi')
@@ -23,16 +23,5 @@
     </form>
 </div>
 </div>
-<script>
- const title  = document.querySelector('#title');
- const slug   = document.querySelector('#slug');
-
- title.addEventListener('change', function(){
-  fetch('/dashboard/categories/checkSlug?title=' + title.value)
-  .then(response => response.json())
-  .then(data => slug.value = data.slug)
- });
-
-</script>
 
 @endsection

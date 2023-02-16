@@ -69,31 +69,21 @@
     </div>
 
     <label for="study" class="form-label">Provinsi</label>
-    <div class="input-group mb-3">
-      <span class="input-group-text">
-        <svg class="icon">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
-        </svg>
-      </span>
+    <div class="mb-3 col-lg-4">
       <select id="study" class="form-control @error('region_id') is-invalid @enderror" name="region_id" required>
         <option value="region_id">-- Pilih Daerah Lowongan --</option>
           @foreach($regions as $region)
-        <option value="{{$region->id}}" {{old('region_id') == $region->id ? 'selected' : ''}}>{{$region->name}}</option>
+        <option value="{{$region->id}}" {{old('region_id') == $region->id ? 'selected' : ''}}>{{$region->nama_provinsi}}</option>
           @endforeach
       </select>
     </div>
 
     <label for="study" class="form-label">Kabupaten</label>
-    <div class="input-group mb-3">
-      <span class="input-group-text">
-        <svg class="icon">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
-        </svg>
-      </span>
+    <div class="mb-3 col-lg-4">
       <select id="study" class="form-control @error('subregion_id') is-invalid @enderror" name="subregion_id" required>
         <option value="subregion_id">-- Pilih Kabupaten Lowongan --</option>
           @foreach($subregions as $subregion)
-        <option value="{{$subregion->id}}" {{old('subregion_id') == $region->id ? 'selected' : ''}}>{{$subregion->name}}</option>
+        <option value="{{$subregion->id}}" {{old('subregion_id') == $region->id ? 'selected' : ''}}>{{$subregion->nama_kabupaten}}</option>
           @endforeach
       </select>
     </div>

@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Task Status</h1>
+    <h1 class="h2">Informasi Pekerjaan</h1>
 </div>
 
 <div class="col-lg-8">
@@ -13,32 +13,66 @@
         @csrf
 
         <div class="mb-3 col-md-4">
-            <label for="name" class="form-label">Penyedia: <b> {{ $name }} </b></label>
+            <label for="name" class="form-label">Penyedia: </label>
+            <p>
+                <b> {{ $name }} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-4">
-          <label for="title" class="form-label">Title: <b> {{$task->title}} </b></label>
+          <label for="title" class="form-label">Title: </label>
+          <p>
+            <b> {{$task->title}} </b>
+          </p>
+        </div>
+
+        <div class="mb-3 col-md-4">
+            <label for="title" class="form-label">Jenis Pekerjaan: </label>
+            <p>
+                <b>{{$task->waktu_pekerjaan}}</b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Deskripsi Pekerjaan</label>
-            <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" readonly>{{old('body', $task->body)}}</textarea>
+            <label for="title" class="form-label">Alamat: </label>
+            <p>
+                <b>{{$task->alamat}}</b>
+            </p>
+        </div>
+
+        <div class="mb-3 col-md-12">
+            <label for="title" class="form-label">Link Maps:</label>
+            <p>
+                <a href="{{$task->link_maps}}" target="_blank"> <b>{{$task->link_maps}} </b> </a>
+            </p>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label for="title" class="form-label">Tanggal: </label>
+            <p>
+                <b>{{$task->tgl_mulai. ' s/d ' .$task->tgl_selesai}}</b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-4">
-            <label for="title" class="form-label">Jenis Pekerjaan: <b>{{$task->waktu_pekerjaan}}</b></label>
+        <label for="title" class="form-label">Waktu: </label>
+            <p>
+                <b>{{$task->jam_masuk.' s/d '.$task->jam_selesai}}</b>
+            </p>
         </div>
 
-        <div class="mb-3 col-md-4">
-            <label for="title" class="form-label">Tanggal: <b>{{$task->tgl_mulai. ' s/d ' .$task->tgl_selesai}}</b></label>
+        <div class="mb-3 col-md-6">
+            <label for="price" class="form-label">Harga yang Ditawarkan: </label>
+            <p>
+                <b> @currency($task->price),- </b>
+            </p>
         </div>
 
-        <div class="mb-3 col-md-4">
-        <label for="title" class="form-label">Waktu: <b>{{$task->jam_masuk.' s/d '.$task->jam_selesai}}</b></label>
-        </div>
-
-        <div class="mb-3 col-md-4">
-            <label for="price" class="form-label">Harga yang Ditawarkan: <b> @currency($task->price),- </b></label>
+        <div class="mb-3 col-md-12">
+          <label for="title" class="form-label">Deskripsi Pekerjaan: </label>
+          <p>
+              <b>{{$task->body}}</b>
+          </p>
         </div>
 
         <div class="mb-3 col-md-4">

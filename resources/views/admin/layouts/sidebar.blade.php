@@ -70,17 +70,29 @@
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-folder"></use>
         </svg> Master Data</a>
       <ul class="nav-group-items">
-        <li class="nav-item"><a class="nav-link" href="/admin/categories">
+        {{-- <li class="nav-item"><a class="nav-link" href="/admin/categories">
           <svg class="nav-icon">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-window-restore"></use>
           </svg> Categories</a>
-      </li>
+        </li> --}}
 
-      <li class="nav-item"><a class="nav-link" href="/admin/educations">
-        <svg class="nav-icon">
-          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-education"></use>
-        </svg> Educations</a>
-      </li>
+        <li class="nav-item"><a class="nav-link" href="/admin/educations">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-education"></use>
+          </svg> Educations</a>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/admin/data-region">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-window-restore"></use>
+          </svg> Data Provinsi</a>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/admin/data-sub-region">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clipboard"></use>
+          </svg> Data Kabupaten</a>
+        </li>
       
       {{-- <li class="nav-item"><a class="nav-link" href="/admin/tasks-setting">
         <svg class="nav-icon">

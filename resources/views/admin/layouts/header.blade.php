@@ -42,12 +42,15 @@
           <div class="dropdown-header bg-light py-2">
             <div class="fw-semibold">Settings</div>
           </div>
+          
+          @can('penyedia')
           <a class="dropdown-item" href="/admin/profile/{{ Auth::user()->id }}/edit">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
             </svg> Profile
           </a>
-            
+          @endcan
+
           <div class="dropdown-divider"></div>
           <form action="/logout" method="POST">
             @csrf

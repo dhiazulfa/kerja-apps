@@ -12,7 +12,7 @@
   </div>
   @endif
     <div class="table-responsive col-lg-6">
-      <a href="/admin/date-region/create" class="btn btn-primary mb-3">Masukkan Data Provinsi</a>
+      <a href="/admin/data-region/create" class="btn btn-primary mb-3">Masukkan Data Provinsi</a>
       <table class="table table-bordered table-sm">
         <thead>
           <tr>
@@ -25,7 +25,7 @@
             @foreach($regions as $region)
             <tr>
               <td>{{ $loop->iteration }}</td>
-              <td>{{ $region->name}}</td>
+              <td>{{ $region->nama_provinsi}}</td>
               <td>
                   <a href="/admin/data-region/{{ $region->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>

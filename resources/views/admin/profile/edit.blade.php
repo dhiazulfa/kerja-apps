@@ -8,10 +8,9 @@
 </div>
 
 <div class="col-lg-12">
-    <form method="POST" action="/admin/profile/{{$client->id}}" class="mb-5">
+    <form method="POST" action="/admin/profile/{{ Auth::user()->id}}" class="mb-5" enctype="multipart/form-data">
       @method('put')
         @csrf
-        
         <div class="mb-3 col-md-4">
             <label for="name" class="form-label">Nama</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ Auth::user()->name }}" required>
@@ -43,8 +42,8 @@
       </div>
 
         <div class="mb-3 col-md-4">
-          <label for="title" class="form-label">NIB</label>
-          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $client->nib}}" required>
+          <label for="nib" class="form-label">NIB</label>
+          <input type="text" class="form-control @error('nib') is-invalid @enderror" id="nib" name="nib" value="{{ $client->nib}}" required>
           @error('title')
             <div class="invalid-feedback">
               {{$message}}
@@ -54,8 +53,8 @@
 
         <div class="mb-3 col-md-4">
             <label for="title" class="form-label">Kategori Bisnis</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $client->kategori_bisnis}}" required>
-            @error('title')
+            <input type="text" class="form-control @error('kategori_bisnis') is-invalid @enderror" id="kategori_bisnis" name="kategori_bisnis" value="{{ $client->kategori_bisnis}}" required>
+            @error('kategori_bisnis')
               <div class="invalid-feedback">
                 {{$message}}
               </div>
@@ -63,23 +62,47 @@
           </div>
 
         <div class="mb-3 col-md-6">
-            <label for="body" class="form-label">Alamat</label>
-            <textarea class="form-control @error('body') is-invalid @enderror" name="body" required>{{old('body', $client->alamat)}}</textarea>
+            <label for="keterangan_tambahan" class="form-label">Deskripsi Tambahan</label>
+            <textarea class="form-control @error('keterangan_tambahan') is-invalid @enderror" name="keterangan_tambahan">{{old('keterangan_tambahan', $client->keterangan_tambahan)}}</textarea>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="alamat" class="form-label">Alamat</label>
+          <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" required>{{old('alamat', $client->alamat)}}</textarea>
+      </div>
+
+        <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Logo Perusahaan Lama</label>
+            <img src="{{asset('storage/employee/logo' . $client->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+
+            <label for="logo" class="form-label">Upload Logo Baru</label>
+            <div class="input-group mb-3">
+              <!-- <span class="input-group-text">
+              Logo</span> -->
+            <input id="logo" class="form-control" type="file" name="logo" placeholder="Logo" requiered>
+            </div>
         </div>
 
         <div class="mb-3 col-md-4">
-            <label for="price" class="form-label">Logo Perusahaan</label>
-            <img src="{{asset('storage/' . $client->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-        </div>
+            <label for="price" class="form-label">Foto Kantor Lama</label>
+            <img src="{{asset('storage/employee/foto_kantor' . $client->foto_kantor)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
 
-        <div class="mb-3 col-md-4">
-            <label for="price" class="form-label">Foto Kantor</label>
-            <img src="{{asset('storage/' . $client->foto_kantor)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <label for="company-photo" class="form-label">Upload Foto Kantor Baru</label>
+            <div class="input-group mb-3">
+            <input id="company-photo" class="form-control" type="file" name="foto_kantor" placeholder="Foto Kantor" requiered>
+            </div>
         </div>
 
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Foto NIB</label>
-            <img src="{{asset('storage/' . $client->foto_nib)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <img src="{{asset('storage/employee/foto_nib'. $client->foto_nib)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+
+            <label for="nib-photo" class="form-label">Upload Foto NIB Baru</label>
+            <div class="input-group mb-3">
+              <!-- <span class="input-group-text">
+              Foto NIB</span> -->
+            <input id="nib-photo" class="form-control" type="file" name="foto_nib" placeholder="foto_nib" requiered>
+            </div>
         </div>
 
         <div class="mb-3 col-md-4">

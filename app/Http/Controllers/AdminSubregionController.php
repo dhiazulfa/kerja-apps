@@ -15,7 +15,7 @@ class AdminSubregionController extends Controller
     public function index()
     {
         return view('admin.data-sub-region.index',[
-            'subregions' => Subegion::all()
+            'subregions' => Subregion::all()
         ]);
     }
 
@@ -38,7 +38,7 @@ class AdminSubregionController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required | max:255',
+            'nama_kabupaten' => 'required | max:255',
         ]);
 
         Subregion::create($validatedData);
@@ -94,9 +94,14 @@ class AdminSubregionController extends Controller
      * @param  \App\Models\Subregion  $subregion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subregion $subregion)
+    public function destroy($id)
     {
-        Subregion::destroy($subregion->id);
-        return redirect('/admin/data-sub-region')->with('success', 'Data Kabupaten dihapus!');
+        $region = Region::find($id);
+        if (!$region) {
+            return redirect('/admin/data-sub-region')->with('error', 'Data Provinsi tidak ditemukan.');
+        }
+        $region->delete();
+    
+        return redirect('/admin/data-sub-region')->with('success', 'Data Provinsi dihapus!');
     }
 }
