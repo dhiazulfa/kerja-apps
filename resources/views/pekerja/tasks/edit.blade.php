@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-    <h1 class="h2">Task Status</h1>
+    <h1 class="h2">Deskripsi Pekerjaan</h1>
 </div>
 
 <div class="col-lg-8">
@@ -24,6 +24,18 @@
 
       <div class="mb-3 col-md-4">
           <label for="title" class="form-label">Jenis Pekerjaan: <b>{{$task->waktu_pekerjaan}}</b></label>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="title" class="form-label">Wilayah: <b>{{$task->subregion->nama_kabupaten}}, {{$task->region->nama_provinsi}}</b></label>
+    </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="title" class="form-label">Jenis Kelamin yang dibutuhkan: <b>{{$task->jk_pekerja}}</b></label>
+      </div>
+
+      <div class="mb-3 col-md-4">
+        <label for="title" class="form-label">Umur: <b>{{$task->umur_min. ' tahun s/d ' .$task->umur_max.' tahun'}}</b></label>
       </div>
 
       <div class="mb-3 col-md-4">

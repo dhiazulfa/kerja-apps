@@ -13,27 +13,59 @@
         @csrf
 
         <div class="mb-3 col-md-12">
-            <label for="name" class="form-label">Pekerjaan: <b> {{ $acceptedTask->task->title }} </b></label>
+            <label for="name" class="form-label">Pekerjaan: </label>
+            <p>
+              <b> {{ $acceptedTask->task->title }} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Deskripsi Pekerjaan: <b> {{$acceptedTask->task->body}} </b></label>
+            <label for="body" class="form-label">Deskripsi Pekerjaan:</label>
+            <p>
+              <b> {{$acceptedTask->task->body}} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Jenis Pekerjaan: <b> {{$acceptedTask->task->waktu_pekerjaan}} </b></label>
+            <label for="body" class="form-label">Alamat Tempat Bekerja:</label>
+            <p>
+              <b> {{$acceptedTask->task->alamat}} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Tanggal: <b> {{$acceptedTask->task->tgl_mulai. ' s/d ' .$acceptedTask->task->tgl_selesai}} </b></label>
+          <label for="body" class="form-label">Ketentuan Umur: </label>
+          <p>
+            <b> {{$acceptedTask->task->umur_min. ' s/d ' .$acceptedTask->task->umur_max.' tahun'}} </b>
+          </p>
+      </div>
+
+        <div class="mb-3 col-md-12">
+            <label for="body" class="form-label">Jenis Pekerjaan: </label>
+            <p>
+              <b> {{$acceptedTask->task->waktu_pekerjaan}} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Jam: <b> {{$acceptedTask->task->jam_masuk.' s/d '.$acceptedTask->task->jam_selesai}} </b></label>
+            <label for="body" class="form-label">Tanggal: </label>
+            <p>
+              <b> {{$acceptedTask->task->tgl_mulai. ' s/d ' .$acceptedTask->task->tgl_selesai}} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Harga yang ditawarkan: <b> @currency($acceptedTask->task->price),- </b></label>
+            <label for="body" class="form-label">Jam: </label>
+            <p>
+              <b> {{$acceptedTask->task->jam_masuk.' s/d '.$acceptedTask->task->jam_selesai}} </b>
+            </p>
+        </div>
+
+        <div class="mb-3 col-md-12">
+            <label for="body" class="form-label">Harga yang ditawarkan: </label>
+            <p>
+              <b> @currency($acceptedTask->task->price),- </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-4">

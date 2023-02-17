@@ -33,6 +33,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
+use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardPaymentsController;
 use App\Http\Controllers\DashboardPekerjaController;
 use App\Http\Controllers\DashboardRekeningController;
@@ -146,3 +147,8 @@ Route::resource('/pekerja/rekening', DashboardRekeningController::class)->middle
 
 //Payment Pegawai
 Route::resource('/pekerja/payments', DashboardPaymentsController::class)->middleware('pekerja');
+
+//Profile Pegawai
+Route::resource('/pekerja/profile', DashboardProfileController::class)->middleware('pekerja');
+
+

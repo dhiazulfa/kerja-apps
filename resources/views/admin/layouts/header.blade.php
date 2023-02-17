@@ -20,19 +20,18 @@
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
           </svg></a></li> --}}
-      @if(Auth::user()->role == 'admin')
       <li class="nav-item"><a class="nav-link" href="/admin/admin-notifies">
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
           </svg></a>
       </li>
-      @else
+
       {{-- <li class="nav-item"><a class="nav-link" href="/admin/notifies">
         <svg class="icon icon-lg">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
         </svg></a>
       </li> --}}
-      @endif
+
     </ul>
     <ul class="header-nav ms-3">
       <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Notify;
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Task;
+use App\Models\AcceptedTask;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 class AdminNotifiesController extends Controller
 {
@@ -28,11 +32,28 @@ class AdminNotifiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+
+        $user  = Auth::user()->id;
+        $user2 = Auth::user()->role;
+
+        if($user2 =='admin'){
         return view('admin.admin-notifies.create', [
-            'users' => User::all(),
+            'users' => User::where('role', '=','pekerja')
+            ->orWhere('role', '=','penyedia')->get(),
             'tasks' => Task::all()
         ]);
+        } else{
+            
+            $client_id = Client::where('user_id', $user)->pluck('user_id')->first();
+            $task_id = Task::where('client_id',$client_id)->get();
+            // dd($task_id);
+            return view('admin.admin-notifies.create', [
+                'users' => User::where('role', '=','pekerja')
+                ->orWhere('role', '=','admin')->get(),
+                'tasks' => $task_id
+            ]);
+        }
     }
 
     /**
@@ -55,7 +76,7 @@ class AdminNotifiesController extends Controller
 
         if ($request->hasFile('image')) {
             $request->file('image')->storeAs(
-                '/images',
+                'employee/notify',
                 $notification->id . '.' . $request->file('image')->extension()
             );
         }

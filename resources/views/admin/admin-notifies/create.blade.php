@@ -19,12 +19,8 @@
       @enderror
     </div>
 
+    @can('admin')
     <div class="input-group col-md-8 mb-4">
-        <span class="input-group-text">
-          <svg class="icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
-          </svg>
-        </span>
         <select class="form-control @error('education_id') is-invalid @enderror" name="user_id" required>
           <option value="education_id">-- Ditujukan Kepada --</option>
           @foreach($users as $user)
@@ -34,11 +30,6 @@
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text">
-          <svg class="icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-building"></use>
-          </svg>
-        </span>
         <select class="form-control @error('education_id') is-invalid @enderror" name="task_id" required>
           <option value="education_id">-- Berkaitan Dengan Task --</option>
           @foreach($tasks as $task)
@@ -51,6 +42,32 @@
         <label for="body" class="form-label">Isi notifikasi</label>
         <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" requiered>{{old('body')}}</textarea>
     </div>
+    @endcan
+
+    @can('penyedia')
+    <div class="input-group col-md-8 mb-4">
+        <select class="form-control @error('education_id') is-invalid @enderror" name="user_id" required>
+          <option value="education_id">-- Ditujukan Kepada --</option>
+          @foreach($users as $user)
+            <option value="{{$user->id}}" {{old('user') == $user->id ? 'selected' : ''}}>{{$user->name}}</option>
+          @endforeach
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <select class="form-control @error('education_id') is-invalid @enderror" name="task_id" required>
+          <option value="education_id">-- Berkaitan Dengan Task --</option>
+          @foreach($tasks as $task)
+            <option value="{{$task->id}}" {{old('task') == $task->id ? 'selected' : ''}}>{{$task->title}}</option>
+          @endforeach
+        </select>
+    </div>
+
+    <div class="smb-3">
+        <label for="body" class="form-label">Isi notifikasi</label>
+        <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" requiered>{{old('body')}}</textarea>
+    </div>
+    @endcan
     
     <div class="mb-3">
         <label for="image" class="form-label">Lampiran</label>

@@ -59,6 +59,8 @@ class DashboardTaskController extends Controller
             'task_id' => $validatedData['task_id'],
             'employee_id' => $employee_id,
             'status' => 'inactive',
+            'rating' => '0',
+            'catatan_pekerjaan' => '-',
         ]);
 
         $task->save();
