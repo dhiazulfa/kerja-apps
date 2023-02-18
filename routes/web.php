@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminNotifiesController;
 use App\Http\Controllers\AdminRegionController;
 use App\Http\Controllers\AdminSubregionController;
 
+use App\Http\Controllers\AdminCheckController;
 use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
@@ -87,6 +88,9 @@ Route::resource('/admin/profile', AdminProfileController::class)->middleware('ad
 
 //Admin accepted task data
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');
+
+//Checkbox All
+Route::resource('/admin/checkall',  AdminCheckController::class)->middleware('admin');
 
 //Admin payment
 Route::resource('/admin/admin-payments', AdminPaymentController::class)->middleware('admin');

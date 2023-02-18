@@ -12,6 +12,7 @@
   </div>
   @endif
     <div class="table-responsive col-lg-6">
+      <a href="/pekerja/notify/create" class="btn btn-primary mb-3">Create New Mail</a>
       <table class="table table-bordered table-sm">
         <thead>
           <tr>

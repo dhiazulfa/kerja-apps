@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('pekerja.layouts.main')
 
 @section('container')
 
@@ -51,7 +51,7 @@
           @enderror
         </div>
 
-        <div class="mb-3 col-md-4">
+        <div class="mb-3 col-md-2">
             <label for="umur" class="form-label">Umur</label>
             <input type="text" class="form-control @error('umur') is-invalid @enderror" id="umur" name="umur" value="{{ $employee->umur}}" required>
             @error('kategori_bisnis')
@@ -61,9 +61,9 @@
             @enderror
         </div>
 
-        <div class="mb-3 col-md-4">
+        <div class="mb-3 col-md-2">
           <label for="umur" class="form-label">Tanggal Lahir</label>
-          <input type="text" class="form-control @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir" name="tgl_lahir" value="{{ $employee->tgl_lahir}}" required>
+          <input type="date" class="form-control @error('tgl_lahir') is-invalid @enderror" id="tgl_lahir" name="tgl_lahir" value="{{ $employee->tgl_lahir}}" required>
           @error('tgl_lahir')
             <div class="invalid-feedback">
               {{$message}}
