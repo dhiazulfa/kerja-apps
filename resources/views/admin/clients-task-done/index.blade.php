@@ -18,9 +18,10 @@
             <th>No</th>
             <th>Nama</th>
             <th>Pekerjaan</th>
-            <th>Lama Pekerjaan</th>
+            <th>Rating (1-10)</th>
             <th>Tanggal Mulai</th>
-            <th>Penawaran</th>
+            <th>Gaji</th>
+            <th>Catatan Pekerjaan</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -30,9 +31,10 @@
               <td>{{ $loop->iteration }}</td>
               <td>{{ $task->employee->name}}</td>
               <td>{{ $task->task->title }}</td>
-              <td>{{ $task->task->waktu_pekerjaan }}</td>
+              <td>{{ $task->rating }}</td>
               <td>{{ $task->task->tgl_mulai }}</td>
               <td> @currency($task->task->price),-</td>
+              <td>{{ $task->catatan_pekerjaan }}</td>
               <td>{{ $task->status }}</td>
             </tr>
             @endforeach
