@@ -26,7 +26,15 @@ class AdminDashboardController extends Controller
         $labels = $employee->keys();
         $data = $employee->values();
 
-        return view('admin.index', compact('labels', 'data'), [
+        $umur = Employee::select(DB::raw("COUNT(*) as count"), DB::raw("FLOOR(DATEDIFF(CURDATE(), tgl_lahir)/365) as age"))
+        ->groupBy('age')
+        ->orderBy('age', 'asc')
+        ->pluck('count', 'age');
+
+        $ages = $umur->keys();
+        $datas = $umur->values();
+
+        return view('admin.index', compact('labels', 'data','ages', 'datas'), [
             'users' => User::all(),
             'clients' => Client::count(),
             'employees' => Employee::count(),

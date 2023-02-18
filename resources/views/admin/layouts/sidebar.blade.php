@@ -140,6 +140,13 @@
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-people"></use>
         </svg> Daftar Pekerja</a>
       </li>
+      
+      <li class="nav-item"><a class="nav-link" href="/admin/clients-task-done">
+        <svg class="nav-icon">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-list"></use>
+        </svg> Pekerjaan Selesai</a>
+      </li>
+      
 
       <li class="nav-item"><a class="nav-link" href="/admin/clients-payment">
         <svg class="nav-icon">

@@ -63,7 +63,24 @@ class EmployeeNotifiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'task_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'image' => 'nullable|image'
+        ]);
+
+        $notification = Notify::create($validatedData);
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->storeAs(
+                'employee/notify',
+                $notification->id . '.' . $request->file('image')->extension()
+            );
+        }
+
+        return redirect('/pekerja/notify')->with('success', 'Notifikasi berhasil dikirim!');
     }
 
     /**

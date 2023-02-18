@@ -127,67 +127,45 @@
                     <!-- /.col-->
                   </div>
                   <!-- /.row-->
-                  <hr class="mt-0">
-                  <div class="progress-group">
-                    <div class="progress-group-header">
-                      <svg class="icon icon-lg me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-google"></use>
-                      </svg>
-                      <div>Organic Search</div>
-                      <div class="ms-auto fw-semibold me-2">191.235</div>
-                      <div class="text-medium-emphasis small">(56%)</div>
-                    </div>
-                    <div class="progress-group-bars">
-                      <div class="progress progress-thin">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <div class="progress-group-header">
-                      <svg class="icon icon-lg me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-facebook-f"></use>
-                      </svg>
-                      <div>Facebook</div>
-                      <div class="ms-auto fw-semibold me-2">51.223</div>
-                      <div class="text-medium-emphasis small">(15%)</div>
-                    </div>
-                    <div class="progress-group-bars">
-                      <div class="progress progress-thin">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <div class="progress-group-header">
-                      <svg class="icon icon-lg me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-twitter"></use>
-                      </svg>
-                      <div>Twitter</div>
-                      <div class="ms-auto fw-semibold me-2">37.564</div>
-                      <div class="text-medium-emphasis small">(11%)</div>
-                    </div>
-                    <div class="progress-group-bars">
-                      <div class="progress progress-thin">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <div class="progress-group-header">
-                      <svg class="icon icon-lg me-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-linkedin"></use>
-                      </svg>
-                      <div>LinkedIn</div>
-                      <div class="ms-auto fw-semibold me-2">27.319</div>
-                      <div class="text-medium-emphasis small">(8%)</div>
-                    </div>
-                    <div class="progress-group-bars">
-                      <div class="progress progress-thin">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
+                  
+                  <canvas id="myChart2" height="100px"></canvas>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                  <script type="text/javascript">
+                    var ages =  {{ Js::from($ages) }};
+                    var datas =  {{ Js::from($datas) }};
+
+                    const data2 = {
+                      labels: ages,
+                      datasets: [{
+                        label: 'Umur Pekerja',
+                        backgroundColor: [
+                          'rgb(255, 99, 132)',
+                          'rgb(54, 162, 235)',
+                          'rgb(255, 205, 86)',
+                          'rgb(75, 192, 192)',
+                          'rgb(153, 102, 255)',
+                          'rgb(255, 159, 64)'
+                        ],
+                        data: datas,
+                      }]
+                    };
+
+                    const config2 = {
+                      type: 'doughnut',
+                      data: data2,
+                      options: {
+                        cutoutPercentage: 50
+                      }
+                    };
+
+                    const myChart2 = new Chart(
+                      document.getElementById('myChart2'),
+                      config2
+                    );
+                  </script>
+
                 </div>
                 <!-- /.col-->
               </div>

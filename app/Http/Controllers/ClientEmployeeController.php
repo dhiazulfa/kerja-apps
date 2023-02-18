@@ -21,7 +21,8 @@ class ClientEmployeeController extends Controller
     {   
         $user = Auth::user()->id;
     
-        $tasks = Task::where('client_id', $user)->get();
+        $tasks = Task::where('client_id', $user)
+        ->get();
         $taskIds = [];
     
         foreach ($tasks as $task) {
@@ -30,7 +31,7 @@ class ClientEmployeeController extends Controller
         
         return view('admin.clients-employee.index', [
             'acceptedTasks' => AcceptedTask::whereIn('task_id', $taskIds)
-            ->whereIn('status',['accepted', 'on_progress', 'done'])
+            ->whereIn('status',['accepted', 'on_progress'])
             ->get()
         ]);
     }

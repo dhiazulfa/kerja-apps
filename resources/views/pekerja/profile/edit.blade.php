@@ -8,7 +8,7 @@
 </div>
 
 <div class="col-lg-12">
-    <form method="POST" action="/admin/profile/{{ Auth::user()->id}}" class="mb-5" enctype="multipart/form-data">
+    <form method="POST" action="/pekerja/profile/{{ Auth::user()->id}}" class="mb-5" enctype="multipart/form-data">
       @method('put')
         @csrf
         <div class="mb-3 col-md-4">

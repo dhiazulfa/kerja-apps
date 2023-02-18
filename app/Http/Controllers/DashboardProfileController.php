@@ -83,7 +83,7 @@ class DashboardProfileController extends Controller
             'phone_number' => 'required|string|max:255',
             'nik' => 'required|numeric',
             'umur' => 'required|numeric',
-            'tgl_lahir' => 'required|',
+            'tgl_lahir' => 'required',
             'alamat_domisili' => 'required|string',
             'alamat_ktp' => 'required|string',
             'pengalaman_kerja' => 'required|string',
@@ -99,7 +99,7 @@ class DashboardProfileController extends Controller
         $user->phone_number = $request->input('phone_number');
         $user->save();
         
-        $employee = Client::where('user_id', $user->id)->first();
+        $employee = Employee::where('user_id', $user->id)->first();
         $employee->nik = $request->input('nik');
         $employee->umur = $request->input('umur');
         $employee->tgl_lahir = $request->input('tgl_lahir');
@@ -108,7 +108,7 @@ class DashboardProfileController extends Controller
         $employee->pengalaman_kerja = $request->input('pengalaman_kerja');
         if ($request->has('foto_ktp')) {
             $foto_ktp = $request->file('foto_ktp');
-            $foto_ktp_path = $logo->store('employee/foto_ktp');
+            $foto_ktp_path = $foto_ktp->store('employee/foto_ktp');
             // $client->logo = str_replace('employee/logo', '', $logo_path);
         }
         if ($request->has('foto_kk')) {
@@ -126,7 +126,7 @@ class DashboardProfileController extends Controller
             $foto_sertifikat_pengalaman_path = $foto_sertifikat_pengalaman->store('employee/foto_sertifikat_pengalaman');
             // $client->foto_nib = str_replace('employee/foto_nib', '', $foto_nib_path);
         }
-        $client->save();
+        $employee->save();
     
         return redirect('/dashboard')->with('success', 'Users has been updated!');
     }

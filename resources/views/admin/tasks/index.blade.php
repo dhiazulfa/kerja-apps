@@ -21,6 +21,7 @@
             <th>No</th>
             <th>Task Title</th>
             <th>Jenis Pekerjaan</th>
+            <th>Kebutuhan Pekerja</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Selesai</th>
             <th>Penawaran</th>
@@ -36,6 +37,7 @@
               <td>{{ $loop->iteration }}</td>
               <td>{{ $task->title}}</td>
               <td>{{ $task->waktu_pekerjaan }}</td>
+              <td>{{ $task->jumlah_kebutuhan }} orang</td>
               <td>{{ $task->tgl_mulai }}</td>
               <td>{{ $task->tgl_selesai }}</td>
               <td> @currency($task->price),-</td>

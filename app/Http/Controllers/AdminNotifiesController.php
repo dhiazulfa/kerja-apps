@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notify;
 use App\Models\User;
 use App\Models\Client;
+use App\Models\Employee;
 use App\Models\Task;
 use App\Models\AcceptedTask;
 use Illuminate\Http\Request;
@@ -47,10 +48,13 @@ class AdminNotifiesController extends Controller
             
             $client_id = Client::where('user_id', $user)->pluck('user_id')->first();
             $task_id = Task::where('client_id',$client_id)->get();
-            // dd($task_id);
+            $task = Task::where('client_id', $client_id)->firstOrFail();
+            
+            $employee_id = AcceptedTask::where('task_id', $task->id)->get();
+            // dd($employee_id);
+
             return view('admin.admin-notifies.create', [
-                'users' => User::where('role', '=','pekerja')
-                ->orWhere('role', '=','admin')->get(),
+                'users' => $employee_id,
                 'tasks' => $task_id
             ]);
         }
@@ -90,9 +94,16 @@ class AdminNotifiesController extends Controller
      * @param  \App\Models\Notify  $notify
      * @return \Illuminate\Http\Response
      */
-    public function show(Notify $notify)
+    public function show($id)
     {
-        //
+        $notify = Notify::find($id);
+
+        $user = User::where('id', $notify->user_id)->first();
+
+        return view('admin.admin-notifies.show',[
+            'notify' => $notify,
+            'user' => $user,
+        ]);
     }
 
     /**

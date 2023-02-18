@@ -28,6 +28,7 @@ use App\Http\Controllers\EmployeePaymentsController;
 
 use App\Http\Controllers\ClientEmployeeController;
 use App\Http\Controllers\ClientsPaymentController;
+use App\Http\Controllers\ClientTaskDoneController;
 
 use App\Http\Controllers\AdminEmployeeDoneController;
 use App\Http\Controllers\AdminTasksController;
@@ -108,13 +109,12 @@ Route::resource('/admin/data-pembayaran', EmployeePaymentsController::class)->mi
 //Penyedia make payment 
 Route::resource('/admin/clients-payment', ClientsPaymentController::class)->middleware('penyedia');
 
-
 Route::resource('/admin/done-task', AdminEmployeeDoneController::class)->middleware('admin');
 
-//
+//accepted Employee list admin
 Route::resource('/admin/accepted-employee', AdminEmployeeAcceptedController::class)->middleware('admin');
 
-//
+//rejected employee list admin
 Route::resource('/admin/employee-rejected', AdminEmployeeRejectedController::class)->middleware('admin');
 
 //Route User
@@ -128,6 +128,9 @@ Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middle
 
 //Client Employee
 Route::resource('/admin/clients-employee', ClientEmployeeController::class)->middleware('penyedia');
+
+//Client Task Done
+Route::get('/admin/clients-task-done', [ClientTaskDoneController::class, 'index'])->middleware('penyedia');
 
 //Task
 Route::resource('/admin/tasks', AdminTasksController::class)->middleware('admin','penyedia');
