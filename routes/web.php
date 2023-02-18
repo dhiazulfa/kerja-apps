@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 //Admin
+use App\Http\Controllers\AdminDashboardController;
+
 use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\AdminCompetenciesController;
 use App\Http\Controllers\AdminEducationsController;
@@ -69,10 +71,15 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 //Route Logout
 Route::post('/logout', [LoginController::class, 'logout']);
 
+
+Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware('admin', 'penyedia');
+
 //Route login dashboard
-Route::get('/admin', function(){
-    return view('admin.index');
-})->middleware('admin','penyedia');
+// Route::get('/admin', function(){
+//     return view('admin.index');
+// })->middleware('admin','penyedia');
+
+
 
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
