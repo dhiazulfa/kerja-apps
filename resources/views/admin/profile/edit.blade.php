@@ -73,7 +73,7 @@
 
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Logo Perusahaan Lama</label>
-            <img src="{{asset('storage/employee/logo' . $client->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <img src="{{asset('storage/' . $client->logo)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
 
             <label for="logo" class="form-label">Upload Logo Baru</label>
             <div class="input-group mb-3">
@@ -85,7 +85,7 @@
 
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Foto Kantor Lama</label>
-            <img src="{{asset('storage/employee/foto_kantor' . $client->foto_kantor)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <img src="{{asset('storage/' . $client->foto_kantor)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
 
             <label for="company-photo" class="form-label">Upload Foto Kantor Baru</label>
             <div class="input-group mb-3">
@@ -95,7 +95,7 @@
 
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Foto NIB</label>
-            <img src="{{asset('storage/employee/foto_nib'. $client->foto_nib)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+            <img src="{{asset('storage/'. $client->foto_nib)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
 
             <label for="nib-photo" class="form-label">Upload Foto NIB Baru</label>
             <div class="input-group mb-3">

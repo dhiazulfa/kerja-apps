@@ -62,10 +62,10 @@ class RegisterController extends Controller
             'pengalaman_kerja' => $request->input('pengalaman_kerja'),
             'umur' => $request->input('umur'),
             'tgl_lahir' => $request->input('tgl_lahir'),
-            'foto_ktp' => $request->file('foto_ktp')->store('employee/foto_ktp'),
-            'foto_kk' => $request->file('foto_kk')->store('employee/foto_kk'),
-            'foto_sertifikat_pengalaman' => $request->file('foto_sertifikat_pengalaman')->store('employee/foto_sertifikat_pengalaman'),
-            'foto_ijazah_terakhir' => $request->file('foto_ijazah_terakhir')->store('employee/foto_ijazah_terakhir'),
+            'foto_ktp' => $request->file('foto_ktp')->store('employee/foto-ktp'),
+            'foto_kk' => $request->file('foto_kk')->store('employee/foto-kk'),
+            'foto_sertifikat_pengalaman' => $request->file('foto_sertifikat_pengalaman')->store('employee/foto-sertifikat-pengalaman'),
+            'foto_ijazah_terakhir' => $request->file('foto_ijazah_terakhir')->store('employee/foto-ijazah-terakhir'),
             ]);
 
         return redirect('/')->with('success', 'Pendaftaran selesai! Silahkan Login!');

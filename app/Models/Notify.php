@@ -11,7 +11,7 @@ class Notify extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['task_id', 'user_id', 'title', 'body', 'image'];
+    protected $fillable = ['task_id', 'user_id', 'pengirim_id', 'pengirim', 'title', 'body', 'image'];
     protected $with     = ['task','user'];
 
     public function user(){

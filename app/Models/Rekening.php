@@ -10,7 +10,7 @@ class Rekening extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    protected $fillable = ['employee_id', 'nomor_rekening', 'nama_bank', 'nama_pemilik'];
+    protected $fillable = ['employee_id', 'nomor_rekening', 'jenis_rekening', 'nama_bank', 'nama_pemilik'];
     // protected $with     = ['acceptedTask','client'];
 
     public function employee(){

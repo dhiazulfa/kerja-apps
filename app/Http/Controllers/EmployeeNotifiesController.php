@@ -20,9 +20,11 @@ class EmployeeNotifiesController extends Controller
      */
     public function index()
     {
-        $id_user = Auth::user()->id;
+        $user_id = Auth::user()->id;
         
-        $notifies = Notify::where('user_id', $id_user)
+        $notifies = Notify::where('pengirim_id', $user_id)
+        ->orWhere('user_id', '=', $user_id)
+        ->orderByDesc('created_at')
         ->get();
 
         return view('pekerja.notify.index',[
@@ -37,21 +39,21 @@ class EmployeeNotifiesController extends Controller
      */
     public function create()
     {
-        $user  = Auth::user()->id;
-        $user2 = Auth::user()->role;
+        // $user  = Auth::user()->id;
+        // $user2 = Auth::user()->role;
 
-        $acceptedTask = AcceptedTask::where('employee_id', $user)->first();
-        $acceptedTask2 = AcceptedTask::where('employee_id', $user)->get();
+        // $acceptedTask = AcceptedTask::where('employee_id', $user)->first();
+        // // $acceptedTask2 = AcceptedTask::where('employee_id', $user)->get();
+        // dd($acceptedTask2);
+        // $task_id = Task::where('id',$acceptedTask->task_id)->first();
 
-        $task_id = Task::where('id',$acceptedTask->task_id)->first();
-
-        $client_id = Client::where('user_id', $task_id->client_id)->get();
+        // $client_id = Client::where('user_id', $task_id->client_id)->get();
         
-        // dd($client_id);
+        
         
         return view('pekerja.notify.create', [
-            'users' => $client_id,
-            'tasks' => $acceptedTask2
+            'users' => User::where('role', '=', 'penyedia')->get(),
+            // 'tasks' => $acceptedTask2
         ]);
     }
 
@@ -64,8 +66,9 @@ class EmployeeNotifiesController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'task_id' => 'required|integer',
             'user_id' => 'required|integer',
+            'pengirim_id' => 'required|integer',
+            'pengirim' => 'required|string',
             'title' => 'required|string',
             'body' => 'required|string',
             'image' => 'nullable|image'

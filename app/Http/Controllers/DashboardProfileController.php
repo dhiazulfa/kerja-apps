@@ -106,26 +106,28 @@ class DashboardProfileController extends Controller
         $employee->alamat_domisili = $request->input('alamat_domisili');
         $employee->alamat_ktp = $request->input('alamat_ktp');
         $employee->pengalaman_kerja = $request->input('pengalaman_kerja');
+        
         if ($request->has('foto_ktp')) {
             $foto_ktp = $request->file('foto_ktp');
-            $foto_ktp_path = $foto_ktp->store('employee/foto_ktp');
-            // $client->logo = str_replace('employee/logo', '', $logo_path);
+            $foto_ktp_path = $foto_ktp->store('employee/foto-ktp');
+            $employee->foto_ktp = $foto_ktp_path;
         }
         if ($request->has('foto_kk')) {
             $foto_kk = $request->file('foto_kk');
-            $foto_kk_path = $foto_kk->store('employee/foto_kk');
-            // $client->foto_kantor = str_replace('employee/foto_kantor', '', $foto_kantor_path);
+            $foto_kk_path = $foto_kk->store('employee/foto-kk');
+            $employee->foto_kk = $foto_kk_path;
         }
         if ($request->has('foto_ijazah_terakhir')) {
             $foto_ijazah_terakhir = $request->file('foto_ijazah_terakhir');
-            $foto_ijazah_terakhir_path = $foto_ijazah_terakhir->store('employee/foto_ijazah_terakhir');
-            // $client->foto_nib = str_replace('employee/foto_nib', '', $foto_nib_path);
+            $foto_ijazah_terakhir_path = $foto_ijazah_terakhir->store('employee/foto-ijazah-terakhir');
+            $employee->foto_ijazah_terakhir = $foto_ijazah_terakhir_path;
         }
         if ($request->has('foto_sertifikat_pengalaman')) {
             $foto_sertifikat_pengalaman = $request->file('foto_sertifikat_pengalaman');
-            $foto_sertifikat_pengalaman_path = $foto_sertifikat_pengalaman->store('employee/foto_sertifikat_pengalaman');
-            // $client->foto_nib = str_replace('employee/foto_nib', '', $foto_nib_path);
+            $foto_sertifikat_pengalaman_path = $foto_sertifikat_pengalaman->store('employee/foto-sertifikat-pengalaman');
+            $employee->foto_sertifikat_pengalaman = $foto_sertifikat_pengalaman_path;
         }
+        
         $employee->save();
     
         return redirect('/dashboard')->with('success', 'Users has been updated!');

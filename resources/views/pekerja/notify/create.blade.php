@@ -12,6 +12,8 @@
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title')}}" required>
+      <input type="text" class="form-control @error('pengirim') is-invalid @enderror" id="pengirim" name="pengirim" value="{{Auth::user()->name}}" hidden>
+      <input type="text" class="form-control @error('pengirim_id') is-invalid @enderror" id="pengirim_id" name="pengirim_id" value="{{Auth::user()->id}}" hidden>
       @error('title')
         <div class="invalid-feedback">
           {{$message}}
@@ -23,19 +25,19 @@
         <select class="form-control @error('education_id') is-invalid @enderror" name="user_id" required>
           <option value="education_id">-- Ditujukan Kepada --</option>
           @foreach($users as $user)
-            <option value="{{$user->id}}" {{old('user') == $user->id ? 'selected' : ''}}>{{$user->user->name}}</option>
+            <option value="{{$user->id}}" {{old('user') == $user->id ? 'selected' : ''}}>{{$user->email}}</option>
           @endforeach
         </select>
     </div>
 
-    <div class="input-group mb-3">
+    {{-- <div class="input-group mb-3">
         <select class="form-control @error('education_id') is-invalid @enderror" name="task_id" required>
           <option value="education_id">-- Berkaitan Dengan Task --</option>
           @foreach($tasks as $task)
             <option value="{{$task->id}}" {{old('task') == $task->id ? 'selected' : ''}}>{{$task->task->title}}</option>
           @endforeach
         </select>
-    </div>
+    </div> --}}
 
     <div class="smb-3">
         <label for="body" class="form-label">Isi notifikasi</label>

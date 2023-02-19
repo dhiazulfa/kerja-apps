@@ -16,12 +16,13 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Pelamar</th>
-            <th>Jenis Pekerjaan</th>
-            <th>Tanggal Mulai</th>
+            <th>Nama</th>
+            <th>Nomor Telefon</th>
+            <th>Pekerjaan</th>
+            <th>Catatan Pekerjaan</th>
+            <th>Rating</th>
             <th>Tanggal Selesai</th>
-            <th>Penawaran</th>
-            <th>Status</th>
+            <th>Gaji</th>
           </tr>
         </thead>
         <tbody>
@@ -29,11 +30,12 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $task->employee->name}}</td>
+              <td>{{ $task->employee->phone_number}}</td>
               <td>{{ $task->task->title }}</td>
-              <td>{{ $task->task->tgl_mulai }}</td>
+              <td>{{ $task->catatan_pekerjaan }}</td>
+              <td>{{ $task->rating }}</td>
               <td>{{ $task->task->tgl_selesai }}</td>
               <td> @currency($task->task->price),-</td>
-              <td>{{ $task->status }}</td>
             </tr>
             @endforeach
         </tbody>

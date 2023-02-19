@@ -124,7 +124,7 @@ Route::resource('/admin/pekerja', AdminEmployeesController::class)->middleware('
 Route::resource('/admin/clients', AdminClientsController::class)->middleware('admin');
 
 //Route Notifikasi
-Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middleware('admin');
+Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middleware('admin','penyedia');
 
 //Client Employee
 Route::resource('/admin/clients-employee', ClientEmployeeController::class)->middleware('penyedia');

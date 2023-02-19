@@ -31,7 +31,7 @@ class EmployeePaymentsController extends Controller
     public function create()
     {
         return view('admin.data-pembayaran.create', [
-            'rekenings' => Rekening::all(),
+            'rekenings' => Rekening::where('jenis_rekening','=','rekening_bank')->get(),
             'tasks' => AcceptedTask::all()
         ]);
     }

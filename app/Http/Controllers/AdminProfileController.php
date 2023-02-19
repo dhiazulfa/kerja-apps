@@ -102,21 +102,26 @@ class AdminProfileController extends Controller
         $client->kategori_bisnis = $request->input('kategori_bisnis');
         $client->keterangan_tambahan = $request->input('keterangan_tambahan');
         $client->alamat = $request->input('alamat');
+        
         if ($request->has('logo')) {
             $logo = $request->file('logo');
             $logo_path = $logo->store('employee/logo');
+            $client->logo = $logo_path;
             // $client->logo = str_replace('employee/logo', '', $logo_path);
         }
         if ($request->has('foto_kantor')) {
             $foto_kantor = $request->file('foto_kantor');
-            $foto_kantor_path = $foto_kantor->store('employee/foto_kantor');
+            $foto_kantor_path = $foto_kantor->store('employee/foto-kantor');
+            $client->foto_kantor = $foto_kantor_path;
             // $client->foto_kantor = str_replace('employee/foto_kantor', '', $foto_kantor_path);
         }
         if ($request->has('foto_nib')) {
             $foto_nib = $request->file('foto_nib');
-            $foto_nib_path = $foto_nib->store('employee/foto_nib');
+            $foto_nib_path = $foto_nib->store('employee/foto-nib');
+            $client->foto_nib = $foto_nib_path;
             // $client->foto_nib = str_replace('employee/foto_nib', '', $foto_nib_path);
         }
+        
         $client->save();
     
         return redirect('/admin')->with('success', 'Users has been updated!');

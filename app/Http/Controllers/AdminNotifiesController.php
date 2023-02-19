@@ -20,8 +20,14 @@ class AdminNotifiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $notify = Notify::all();
+    {   
+        $user_id = Auth::user()->id;
+
+        $notify = Notify::where('pengirim_id', '=', $user_id)
+        ->orWhere('user_id', '=', $user_id)
+        ->orderByDesc('created_at')
+        ->get();
+        
         return view('admin.admin-notifies.index',[
             'notifies' => $notify
         ]);
@@ -46,16 +52,17 @@ class AdminNotifiesController extends Controller
         ]);
         } else{
             
-            $client_id = Client::where('user_id', $user)->pluck('user_id')->first();
-            $task_id = Task::where('client_id',$client_id)->get();
-            $task = Task::where('client_id', $client_id)->firstOrFail();
+            // $client_id = Client::where('user_id', $user)->pluck('user_id')->first();
+            // $task_id = Task::where('client_id',$client_id)->get();
+            // $task = Task::where('client_id', $client_id)->firstOrFail();
             
-            $employee_id = AcceptedTask::where('task_id', $task->id)->get();
+            // $employee_id = AcceptedTask::where('task_id', $task->id)->get();
             // dd($employee_id);
 
             return view('admin.admin-notifies.create', [
-                'users' => $employee_id,
-                'tasks' => $task_id
+                'users' => User::where('role', '=','pekerja')
+                ->orWhere('role', '=','admin')->get(),
+                // 'tasks' => $task_id
             ]);
         }
     }
@@ -69,9 +76,10 @@ class AdminNotifiesController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'task_id' => 'required|integer',
             'user_id' => 'required|integer',
+            'pengirim_id' => 'required|integer',
             'title' => 'required|string',
+            'pengirim' => 'required|string',
             'body' => 'required|string',
             'image' => 'nullable|image'
         ]);
