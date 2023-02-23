@@ -96,7 +96,7 @@ class AdminSubregionController extends Controller
      */
     public function destroy($id)
     {
-        $region = Region::find($id);
+        $region = SubRegion::find($id);
         if (!$region) {
             return redirect('/admin/data-sub-region')->with('error', 'Data Provinsi tidak ditemukan.');
         }

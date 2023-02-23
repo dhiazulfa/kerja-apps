@@ -83,7 +83,7 @@
       <select id="study" class="form-control @error('subregion_id') is-invalid @enderror" name="subregion_id" required>
         <option value="subregion_id">-- Pilih Kabupaten Lowongan --</option>
           @foreach($subregions as $subregion)
-        <option value="{{$subregion->id}}" {{old('subregion_id') == $region->id ? 'selected' : ''}}>{{$subregion->nama_kabupaten}}</option>
+        <option value="{{$subregion->id}}" {{old('subregion_id') == $subregion->id ? 'selected' : ''}}>{{$subregion->nama_kabupaten}}</option>
           @endforeach
       </select>
     </div>

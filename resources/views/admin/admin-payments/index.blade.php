@@ -17,6 +17,7 @@
           <tr>
             <th>No</th>
             <th>Pekerjaan</th>
+            <th>Pembayaran Kepada</th>
             <th>Lama Pekerjaan</th>
             <th>Tanggal Mulai</th>
             <th>Penawaran</th>
@@ -29,6 +30,7 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $payment->task->task->title }}</td>
+              <td>{{ $payment->task->employee->name }}</td>
               <td>{{ $payment->task->task->waktu_pekerjaan }}</td>
               <td>{{ $payment->task->task->tgl_mulai }}</td>
               <td>@currency($payment->task->task->price)</td>

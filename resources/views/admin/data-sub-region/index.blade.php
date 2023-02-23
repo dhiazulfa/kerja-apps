@@ -27,9 +27,9 @@
               <td>{{ $loop->iteration }}</td>
               <td>{{ $subregion->nama_kabupaten}}</td>
               <td>
-                  <a href="/admin/data-sub-region/{{ $subregion->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
+                  {{-- <a href="/admin/data-sub-region/{{ $subregion->id }}/edit" class="badge bg-warning"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                  </svg></span></a>
+                  </svg></span></a> --}}
 
                   <form action="/admin/data-sub-region/{{ $subregion->id }}" method="POST" class="d-inline">
                     @method('delete')
