@@ -37,7 +37,7 @@ class RegisterController extends Controller
             'tgl_lahir' => 'required',
             'foto_ktp' => 'required|image',
             'foto_kk' => 'required|image',
-            'foto_sertifikat_pengalaman' => 'required|image',
+            'foto_sertifikat_pengalaman' => 'image',
             'foto_ijazah_terakhir' => 'required|image',
         ]);
 

@@ -68,8 +68,8 @@
     </div>
   
     <div class="mb-3">
-        <label for="image" class="form-label">Lampiran</label>
-        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image')}}" required>
+        <label for="image" class="form-label">Lampiran Gambar (Boleh Dikosongkan)</label>
+        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" value="{{old('image')}}">
         @error('image')
           <div class="invalid-feedback">
             {{$message}}
