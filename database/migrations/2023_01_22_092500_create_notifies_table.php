@@ -17,7 +17,9 @@ class CreateNotifiesTable extends Migration
             $table->id();
             $table->foreignId('task_id')->nullable();
             $table->foreignId('user_id')->nullable();
+            $table->foreignId('pengirim_id')->nullable();
             $table->string('title');
+            $table->string('pengirim');
             $table->text('body');
             $table->string('image')->nullable();
             $table->timestamp('publish_at')->nullable();

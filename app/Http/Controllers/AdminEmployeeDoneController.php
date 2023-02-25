@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\AcceptedTask;
+use App\Models\Client;
+use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,20 @@ class AdminEmployeeDoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        //BUGGGGGG OJO DI PUSH
+        // $acceptedTask = AcceptedTask::where('status', '=', 'done')->pluck('task_id')->first();
+
+        // $task = Task::where('id', $acceptedTask)->pluck('client_id')->first();
+
+        // $client = Client::where('user_id', $task)->first();
+
+        // return view('admin.done-task.index',[
+        //     'acceptedTasks' => AcceptedTask::where('status','=', 'done')->get(),
+        //     'penyedia' => $client->user->name,
+        //     'employees' => Employee::all(),
+        // ]);
+
         return view('admin.done-task.index',[
             'acceptedTasks' => AcceptedTask::where('status','=', 'done')->get(),
             'employees' => Employee::all(),

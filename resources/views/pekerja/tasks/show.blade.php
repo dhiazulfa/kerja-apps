@@ -6,7 +6,6 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
         <h1 class="h2">Deskripsi Pekerjaan</h1>
     </div>
-
     <div class="col-lg-8">
         <div class="mb-3 col-md-12">
             <label for="name" class="form-label">Title: <b> {{ $acceptedTask->task->title }} </b></label>

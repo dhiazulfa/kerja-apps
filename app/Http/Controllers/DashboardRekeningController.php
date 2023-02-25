@@ -47,6 +47,7 @@ class DashboardRekeningController extends Controller
         $validatedData = $request->validate([
             'nomor_rekening' => 'required',
             'nama_bank' => 'required',
+            'jenis_rekening' => 'required',
             'nama_pemilik' => 'required',
         ]);
 
@@ -57,6 +58,7 @@ class DashboardRekeningController extends Controller
         $rekening = new Rekening();
         $rekening->employee_id = $employee_id;
         $rekening->nomor_rekening = $validatedData['nomor_rekening'];
+        $rekening->jenis_rekening = $validatedData['jenis_rekening'];
         $rekening->nama_bank = $validatedData['nama_bank'];
         $rekening->nama_pemilik = $validatedData['nama_pemilik'];
         $rekening->save();

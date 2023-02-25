@@ -18,9 +18,12 @@
           <tr>
             <th>No</th>
             <th>NIK</th>
-            <th>Name</th>
+            <th>Nama</th>
             <th>Email</th>
+            <th>Umur</th>
+            <th>Jenis Kelamin</th>
             <th>Phone Number</th>
+            <th>Waktu Mendaftar</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -32,7 +35,10 @@
               <td>{{ $user->nik}}</td>
               <td>{{ $user->user->name}}</td>
               <td>{{ $user->user->email}}</td>
+              <td>{{ $user->umur}}</td>
+              <td>{{ $user->jenis_kelamin}}</td>
               <td>{{ $user->user->phone_number}}</td>
+              <td>{{ $user->user->created_at->format('d-m-Y')}}</td>
               <td>{{ $user->user->status}}</td>
               <td>
                   <a href="/admin/pekerja/{{ $user->id }}/edit" class="badge bg-warning"><span><svg class="icon me">

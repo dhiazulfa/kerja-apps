@@ -9,19 +9,24 @@
 
     <div class="col-lg-8">
         <div class="mb-3 col-md-12">
-            <label for="name" class="form-label">Title: <b> {{ $notify->title }} </b></label>
+            <label for="name" class="form-label">Pengirim: </label>
+            <p>
+              <b> {{ $notify->pengirim }} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Isi pesan: <b> {{$notify->body}} </b></label>
+            <label for="name" class="form-label">Title: </label>
+            <p>
+              <b> {{ $notify->title }} </b>
+            </p>
         </div>
 
         <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Untuk pekerjaan: <b> {{$notify->task->title}} </b></label>
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label for="body" class="form-label">Untuk tanggal: <b> {{$notify->task->tgl_mulai. ' s/d '. $notify->task->tgl_selesai}} </b></label>
+            <label for="body" class="form-label">Isi pesan: </label>
+            <p>
+              <b> {{$notify->body}} </b>
+            </p>
         </div>
 
         {{-- <div class="mb-3 col-md-12">

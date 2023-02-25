@@ -18,7 +18,8 @@ class CreateAcceptedTasksTable extends Migration
             $table->foreignId('task_id');
             $table->foreignId('employee_id');
             $table->enum('status', ['inactive','accepted', 'on_progress', 'done', 'ditolak']);
-            $table->string('foto_bukti')->nullable();
+            $table->integer('rating');
+            $table->text('catatan_pekerjaan');
             $table->timestamps();
         });
     }

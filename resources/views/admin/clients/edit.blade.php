@@ -32,6 +32,16 @@
         </div>
 
         <div class="mb-3 col-md-4">
+          <label for="phone_number" class="form-label">Nomor Telefon</label>
+          <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ $client->user->phone_number }}" readonly>
+          @error('phone_number')
+            <div class="invalid-feedback">
+              {{$message}}
+            </div>
+          @enderror
+      </div>
+
+        <div class="mb-3 col-md-4">
           <label for="title" class="form-label">NIB</label>
           <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $client->nib}}" readonly>
           @error('title')

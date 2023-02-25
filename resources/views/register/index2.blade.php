@@ -68,85 +68,87 @@
                 
                 <form action="/register-penyedia" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                <label for="nib" class="form-label">NIB</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                   <svg class="icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-id-card"></use>
                   </svg></span>
-                <input class="form-control @error('nib') is-invalid @enderror" type="text" name="nib" placeholder="NIB" value="{{old('nib')}}" requiered>
+                <input id="nib" class="form-control @error('nib') is-invalid @enderror" type="text" name="nib" placeholder="NIB" value="{{old('nib')}}" requiered>
                 </div>
-
+                <label for="category" class="form-label">Kategori Bisnis</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-id-card"></use>
                     </svg></span>
-                  <input class="form-control @error('kategori_bisnis') is-invalid @enderror" type="text" name="kategori_bisnis" placeholder="Kategori Bisnis" value="{{old('kategori_bisnis')}}" requiered>
+                  <input id="category" class="form-control @error('kategori_bisnis') is-invalid @enderror" type="text" name="kategori_bisnis" placeholder="Kategori Bisnis" value="{{old('kategori_bisnis')}}" requiered>
                   </div>
-
+                  <label for="name" class="form-label">Nama</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                     </svg></span>
-                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Nama" value="{{old('name')}}" requiered>
+                  <input id="name" class="form-control @error('name') is-invalid @enderror" type="text" name="name" placeholder="Nama" value="{{old('name')}}" requiered>
                 </div>
-
+                <label for="email" class="form-label">Email</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                     </svg></span>
-                  <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{old('email')}}" requiered>
+                  <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email" value="{{old('email')}}" requiered>
                 </div>
-
+                <label for="phone" class="form-label">Phone Number</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-phone"></use>
                     </svg></span>
-                  <input class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" placeholder="Phone Number" value="{{old('phone_number')}}" requiered>
+                  <input id="phone" class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" placeholder="Phone Number" value="{{old('phone_number')}}" requiered>
                 </div>
-
+                <label for="password" class="form-label">Password</label>
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                     </svg></span>
-                  <input class="form-control" type="password" name="password" placeholder="Password" requiered>
+                  <input id="password" class="form-control" type="password" name="password" placeholder="Password" requiered>
                 </div>
-
+                <label for="address" class="form-label">Alamat Lengkap</label>
                 <div class="input-group mb-3">
                   <span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
                     </svg>
                   </span>
-                  <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" placeholder="Address" requiered>{{old('alamat')}}</textarea>
+                  <textarea id="address" class="form-control @error('alamat') is-invalid @enderror" name="alamat" placeholder="Address" requiered>{{old('alamat')}}</textarea>
                 </div>
-
+                <label for="more-information" class="form-label">Tambah Keterangan</label>
                 <div class="input-group mb-3">
                   <span class="input-group-text">
                     <svg class="icon">
-                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
                     </svg>
                   </span>
-                  <textarea class="form-control row-5 @error('keterangan_tambahan') is-invalid @enderror" name="keterangan_tambahan" placeholder="Keterangan Tambahan" requiered>{{old('keterangan_tambahan')}}</textarea>
+                  <textarea id="more-information" class="form-control row-5 @error('keterangan_tambahan') is-invalid @enderror" name="keterangan_tambahan" placeholder="Keterangan Tambahan" requiered>{{old('keterangan_tambahan')}}</textarea>
                 </div>
 
-                <div class="input-group mb-3"><span class="input-group-text">
-                  Foto Kantor</span>
-                <input class="form-control" type="file" name="foto_kantor" placeholder="Foto Kantor" requiered>
+                <label for="company-photo" class="form-label">Foto Kantor</label>
+                <div class="input-group mb-3">
+                <input id="company-photo" class="form-control" type="file" name="foto_kantor" placeholder="Foto Kantor" requiered>
                 </div>
-                
-                <div class="input-group mb-3"><span class="input-group-text">
-                  Logo</span>
-                <input class="form-control" type="file" name="logo" placeholder="Logo" requiered>
+                <label for="logo" class="form-label">Logo</label>
+                <div class="input-group mb-3">
+                  <!-- <span class="input-group-text">
+                  Logo</span> -->
+                <input id="logo" class="form-control" type="file" name="logo" placeholder="Logo" requiered>
+                </div>
+                <label for="nib-photo" class="form-label">Foto NIB</label>
+                <div class="input-group mb-3">
+                  <!-- <span class="input-group-text">
+                  Foto NIB</span> -->
+                <input id="nib-photo" class="form-control" type="file" name="foto_nib" placeholder="foto_nib" requiered>
                 </div>
 
-                <div class="input-group mb-3"><span class="input-group-text">
-                  Foto NIB</span>
-                <input class="form-control" type="file" name="foto_nib" placeholder="foto_nib" requiered>
-                </div>
-
-                <button class="btn btn-block btn-success" type="submit">Create Account</button>
+                <button class="btn btn-block btn-primary" type="submit">Create Account</button>
                 </form>
-                <small class="d-block text-center"><a href="/register-penyedia">Register sebagai Calon Pekerja</a></small>
+                <small class="d-block text-center mt-2"><a href="/register-penyedia">Register sebagai Calon Pekerja</a></small>
               </div>
             </div>
           </div>

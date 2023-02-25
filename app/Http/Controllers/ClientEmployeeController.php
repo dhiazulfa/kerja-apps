@@ -21,7 +21,8 @@ class ClientEmployeeController extends Controller
     {   
         $user = Auth::user()->id;
     
-        $tasks = Task::where('client_id', $user)->get();
+        $tasks = Task::where('client_id', $user)
+        ->get();
         $taskIds = [];
     
         foreach ($tasks as $task) {
@@ -30,7 +31,7 @@ class ClientEmployeeController extends Controller
         
         return view('admin.clients-employee.index', [
             'acceptedTasks' => AcceptedTask::whereIn('task_id', $taskIds)
-            ->whereIn('status',['accepted', 'on_progress', 'done'])
+            ->whereIn('status',['accepted', 'on_progress'])
             ->get()
         ]);
     }
@@ -101,25 +102,30 @@ class ClientEmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $acceptedTask = AcceptedTask::find($id);
-        
-        $validatedData = $request->validate([
-            'status' => 'required|string',
-            'foto_bukti' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        
-        if ($request->hasFile('foto_bukti')) {
-            $image = $request->file('foto_bukti');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $name);
             
-            $acceptedTask->foto_bukti = $name;
-        }
-                
-        $acceptedTask->status = $validatedData['status'];
-        $acceptedTask->save();
+        if ($acceptedTask->status == 'accepted') {
+            $validatedData = $request->validate([
+                'status' => 'required|string',
+            ]);
     
-        return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan dan foto bukti berhasil diubah!');
+            $acceptedTask->status = $validatedData['status'];
+            $acceptedTask->save();
+    
+            return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
+        } else {
+            $validatedData = $request->validate([
+                'status' => 'required|string',
+                'rating' => 'required|integer',
+                'catatan_pekerjaan' => 'required',
+            ]);
+    
+            $acceptedTask->status = $validatedData['status'];
+            $acceptedTask->rating = $validatedData['rating'];
+            $acceptedTask->catatan_pekerjaan = $validatedData['catatan_pekerjaan'];
+            $acceptedTask->save();
+    
+            return redirect('/admin/clients-employee')->with('success', 'Status pekerjaan berhasil diubah!');
+        }   
     }
 
     /**

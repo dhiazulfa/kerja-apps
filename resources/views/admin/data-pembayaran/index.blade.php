@@ -12,7 +12,8 @@
   </div>
   @endif
     <div class="table-responsive col-lg-12">
-      <a href="/admin/data-pembayaran/create" class="btn btn-primary mb-3">Buat Pembayaran Baru</a>
+      <a href="/admin/data-pembayaran/create" class="btn btn-primary mb-3">Pembayaran Transfer Bank</a>
+      <a href="/admin/data-pembayaran-ewallet/create" class="btn btn-success mb-3">Pembayaran E-Wallet</a>
       <table class="table table-bordered table-sm">
         <thead>
           <tr>

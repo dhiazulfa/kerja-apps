@@ -17,6 +17,7 @@ class CreateRekeningsTable extends Migration
             $table->id();
             $table->foreignId('employee_id');
             $table->string('nomor_rekening');
+            $table->string('jenis_rekening');
             $table->string('nama_bank');
             $table->string('nama_pemilik');
             $table->timestamps();

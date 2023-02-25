@@ -71,9 +71,9 @@ class RegisterClientsController extends Controller
             'alamat' => $request->input('alamat'),
             'keterangan_tambahan' => $request->input('keterangan_tambahan'),
             'kategori_bisnis' => $request->input('kategori_bisnis'),
-            'foto_kantor' => $request->file('foto_kantor')->store('employee/foto_kantor'),
+            'foto_kantor' => $request->file('foto_kantor')->store('employee/foto-kantor'),
             'logo' => $request->file('logo')->store('employee/logo'),
-            'foto_nib' => $request->file('foto_nib')->store('employee/foto_nib'),
+            'foto_nib' => $request->file('foto_nib')->store('employee/foto-nib'),
             ]);
 
         return redirect('/')->with('success', 'Pendaftaran selesai! Silahkan Login!');

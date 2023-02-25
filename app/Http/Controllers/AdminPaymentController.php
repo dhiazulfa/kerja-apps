@@ -62,10 +62,10 @@ class AdminPaymentController extends Controller
      */
     public function edit($id)
     {
-        $payment = Payment::find($id)->first();
+        $payment = Payment::find($id);
 
         $client = Client::where('user_id',$payment->client_id)->first();
-        // dd($client);
+        //dd($client);
         return view('admin.admin-payments.edit', [
             'payment' => $payment,
             'client' => $client

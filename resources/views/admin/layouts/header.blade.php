@@ -20,40 +20,36 @@
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
           </svg></a></li> --}}
-      @if(Auth::user()->role == 'admin')
       <li class="nav-item"><a class="nav-link" href="/admin/admin-notifies">
           <svg class="icon icon-lg">
             <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
           </svg></a>
       </li>
-      @else
+
       {{-- <li class="nav-item"><a class="nav-link" href="/admin/notifies">
         <svg class="icon icon-lg">
           <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
         </svg></a>
       </li> --}}
-      @endif
+
     </ul>
     <ul class="header-nav ms-3">
       <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <div class="avatar avatar-md"><img class="avatar-img" src="/assets/img/omtech-logo.jpeg"></div>
+          <div class="avatar avatar-md"><img class="avatar-img" src="/assets/img/user.png"></div>
         </a>
         <div class="dropdown-menu dropdown-menu-end pt-0">
           <div class="dropdown-header bg-light py-2">
             <div class="fw-semibold">Settings</div>
-          </div><a class="dropdown-item" href="#">
+          </div>
+          
+          @can('penyedia')
+          <a class="dropdown-item" href="/admin/profile/{{ Auth::user()->id }}/edit">
             <svg class="icon me-2">
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> Profile</a><a class="dropdown-item" href="#">
-            {{-- <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-            </svg> Settings</a><a class="dropdown-item" href="#"> --}}
-            {{-- <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-            </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
-            <svg class="icon me-2">
-              <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-            </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a> --}}
+            </svg> Profile
+          </a>
+          @endcan
+
           <div class="dropdown-divider"></div>
           <form action="/logout" method="POST">
             @csrf
@@ -62,6 +58,7 @@
               <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
             </svg> Logout</button>
           </form>
+
         </div>
       </li>
     </ul>

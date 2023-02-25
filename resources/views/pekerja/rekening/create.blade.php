@@ -11,7 +11,16 @@
     @csrf
     
     <div class="mb-3">
-      <label for="title" class="form-label">Nomor Rekening</label>
+      <label for="title" class="form-label">Pilih Jenis Rekening</label>
+      <select id="jenis_rekening" class="form-control @error('jenis_rekening') is-invalid @enderror" name="jenis_rekening" required>
+        <option value="">Jenis Rekening</option>
+        <option value="rekening_bank">Rekening Bank</option>
+        <option value="ewallet">E-Wallet</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Nomor Rekening / Nomor E-Wallet</label>
       <input type="text" class="form-control @error('nomor_rekening') is-invalid @enderror" id="nomor_rekening" name="nomor_rekening" value="{{old('nomor_rekening')}}" required>
       @error('nomor_rekening')
         <div class="invalid-feedback">
@@ -21,7 +30,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="title" class="form-label">Nama Bank</label>
+        <label for="title" class="form-label">Nama Bank / Nama E-Wallet</label>
         <input type="text" class="form-control @error('nama_bank') is-invalid @enderror" id="nama_bank" name="nama_bank" value="{{old('nama_bank')}}" required>
         @error('nama_bank')
           <div class="invalid-feedback">

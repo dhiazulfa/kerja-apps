@@ -6,22 +6,29 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 //Admin
+use App\Http\Controllers\AdminDashboardController;
+
 use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\AdminCompetenciesController;
 use App\Http\Controllers\AdminEducationsController;
 use App\Http\Controllers\AdminEmployeesController;
 use App\Http\Controllers\AdminClientsController;
 use App\Http\Controllers\AdminNotifiesController;
+use App\Http\Controllers\AdminRegionController;
+use App\Http\Controllers\AdminSubregionController;
 
+use App\Http\Controllers\AdminCheckController;
 use App\Http\Controllers\AdminAcceptedTaskController;
 use App\Http\Controllers\AdminEmployeeAcceptedController;
 use App\Http\Controllers\AdminEmployeeRejectedController;
 use App\Http\Controllers\AdminPaymentController;
+use App\Http\Controllers\AdminProfileController;
 
 use App\Http\Controllers\EmployeePaymentsController;
 
 use App\Http\Controllers\ClientEmployeeController;
 use App\Http\Controllers\ClientsPaymentController;
+use App\Http\Controllers\ClientTaskDoneController;
 
 use App\Http\Controllers\AdminEmployeeDoneController;
 use App\Http\Controllers\AdminTasksController;
@@ -30,6 +37,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterClientsController;
 
+use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\DashboardPaymentsController;
 use App\Http\Controllers\DashboardPekerjaController;
 use App\Http\Controllers\DashboardRekeningController;
@@ -64,16 +72,33 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 //Route Logout
 Route::post('/logout', [LoginController::class, 'logout']);
 
+
+Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware('admin', 'penyedia');
+
 //Route login dashboard
-Route::get('/admin', function(){
-    return view('admin.index');
-})->middleware('admin','penyedia');
+// Route::get('/admin', function(){
+//     return view('admin.index');
+// })->middleware('admin','penyedia');
+
+
 
 //Route Admin Category
 Route::resource('/admin/categories', AdminCategoriesController::class)->middleware('admin');
 
+//Route admin region
+Route::resource('/admin/data-region', AdminRegionController::class)->middleware('admin');
+
+//Route admin sub-region
+Route::resource('/admin/data-sub-region', AdminSubregionController::class)->middleware('admin');
+
+//edit profile admin dan penyedia
+Route::resource('/admin/profile', AdminProfileController::class)->middleware('admin', 'penyedia');
+
 //Admin accepted task data
 Route::resource('/admin/accepted-task', AdminAcceptedTaskController::class)->middleware('admin');
+
+//Checkbox All
+Route::resource('/admin/checkall',  AdminCheckController::class)->middleware('admin');
 
 //Admin payment
 Route::resource('/admin/admin-payments', AdminPaymentController::class)->middleware('admin');
@@ -84,13 +109,12 @@ Route::resource('/admin/data-pembayaran', EmployeePaymentsController::class)->mi
 //Penyedia make payment 
 Route::resource('/admin/clients-payment', ClientsPaymentController::class)->middleware('penyedia');
 
-
 Route::resource('/admin/done-task', AdminEmployeeDoneController::class)->middleware('admin');
 
-//
+//accepted Employee list admin
 Route::resource('/admin/accepted-employee', AdminEmployeeAcceptedController::class)->middleware('admin');
 
-//
+//rejected employee list admin
 Route::resource('/admin/employee-rejected', AdminEmployeeRejectedController::class)->middleware('admin');
 
 //Route User
@@ -100,10 +124,13 @@ Route::resource('/admin/pekerja', AdminEmployeesController::class)->middleware('
 Route::resource('/admin/clients', AdminClientsController::class)->middleware('admin');
 
 //Route Notifikasi
-Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middleware('admin');
+Route::resource('/admin/admin-notifies', AdminNotifiesController::class)->middleware('admin','penyedia');
 
 //Client Employee
 Route::resource('/admin/clients-employee', ClientEmployeeController::class)->middleware('penyedia');
+
+//Client Task Done
+Route::get('/admin/clients-task-done', [ClientTaskDoneController::class, 'index'])->middleware('penyedia');
 
 //Task
 Route::resource('/admin/tasks', AdminTasksController::class)->middleware('admin','penyedia');
@@ -134,3 +161,8 @@ Route::resource('/pekerja/rekening', DashboardRekeningController::class)->middle
 
 //Payment Pegawai
 Route::resource('/pekerja/payments', DashboardPaymentsController::class)->middleware('pekerja');
+
+//Profile Pegawai
+Route::resource('/pekerja/profile', DashboardProfileController::class)->middleware('pekerja');
+
+

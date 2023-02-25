@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Region;
+use App\Models\Subregion;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,11 +25,11 @@ class AdminTasksController extends Controller
 
         if($user2 == 'admin'){
             return view('admin.tasks.index',[
-                'tasks' => Task::all()
+                'tasks' => Task::orderByDesc('created_at')->get()
             ]);
         } else {
             return view('admin.tasks.index',[
-                'tasks' => Task::all()->where('client_id', $user)
+                'tasks' => Task::where('client_id', $user)->orderByDesc('created_at')->get()
             ]);
         }
     }
@@ -39,7 +41,10 @@ class AdminTasksController extends Controller
      */
     public function create()
     {
-        return view('admin.tasks.create');
+        return view('admin.tasks.create', [
+            'regions' => Region::all(),
+            'subregions' => Subregion::all(),
+        ]);
     }
 
     /**
@@ -49,19 +54,27 @@ class AdminTasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
+    {
     $validatedData = $request->validate([
         'title' => 'required|string',
+        'region_id' => 'required',
+        'subregion_id' => 'required',
         'slug' => 'required|string|unique:tasks',
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'body' => 'required|string',
+        'alamat' => 'required|string',
+        'link_maps' => 'required|string',
         'waktu_pekerjaan' => 'required|string',
         'jam_masuk' => 'required|date_format:H:i:s',
         'jam_selesai' => 'required|date_format:H:i:s',
         'tgl_mulai' => 'required|date',
         'tgl_selesai' => 'required|date',
         'punishment' => 'required',
-        'price' => 'required|numeric'
+        'price' => 'required|numeric',
+        'jumlah_kebutuhan' => 'required|numeric',
+        'jk_pekerja' => 'required|string',
+        'umur_min' => 'required|numeric',
+        'umur_max' => 'required|numeric',
     ]);
 
     $client_id = Auth::user()->id;
@@ -69,9 +82,13 @@ class AdminTasksController extends Controller
     $task = new Task([
         'client_id' => $client_id,
         'title' => $validatedData['title'],
+        'region_id' => $validatedData['region_id'],
+        'subregion_id' => $validatedData['subregion_id'],
         'slug' => $validatedData['slug'],
         'image' => $validatedData['image'],
         'body' => $validatedData['body'],
+        'alamat' => $validatedData['alamat'],
+        'link_maps' => $validatedData['link_maps'],
         'waktu_pekerjaan' => $validatedData['waktu_pekerjaan'],
         'status' => 'inactive',
         'jam_masuk' => $validatedData['jam_masuk'],
@@ -79,14 +96,18 @@ class AdminTasksController extends Controller
         'tgl_mulai' => $validatedData['tgl_mulai'],
         'tgl_selesai' => $validatedData['tgl_selesai'],
         'punishment' => $validatedData['punishment'],
-        'price' => $validatedData['price']
+        'price' => $validatedData['price'],
+        'jumlah_kebutuhan' => $validatedData['jumlah_kebutuhan'],
+        'jk_pekerja' => $validatedData['jk_pekerja'],
+        'umur_min' => $validatedData['umur_min'],
+        'umur_max' => $validatedData['umur_max'],
     ]);
 
     $task['excerpt'] = Str::limit(strip_tags($request->body), 100);
     $task->save();
 
     return redirect('/admin/tasks')->with('success', 'Tasks has been created!');
-}
+    }
 
     /**
      * Display the specified resource.

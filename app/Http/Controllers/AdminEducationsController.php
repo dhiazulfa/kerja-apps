@@ -81,7 +81,17 @@ class AdminEducationsController extends Controller
      */
     public function update(Request $request, Education $education)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'slug' => 'required|string|unique:educations,slug,'.$education->id,
+        ]);
+    
+        $education->name = $request->input('name');
+        $education->slug = $request->input('slug');
+    
+        $education->save();
+
+        return redirect('/admin/educations')->with('success', 'Education has been added!');
     }
 
     /**

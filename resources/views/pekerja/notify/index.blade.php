@@ -11,13 +11,16 @@
     {{session('success')}}
   </div>
   @endif
-    <div class="table-responsive col-lg-6">
+    <div class="table-responsive col-lg-12">
+      <a href="/pekerja/notify/create" class="btn btn-primary mb-3">Create New Mail</a>
       <table class="table table-bordered table-sm">
         <thead>
           <tr>
             <th>No</th>
             <th>Title</th>
-            <th>For</th>
+            <th>Pengirim</th>
+            <th>Ditujukan</th>
+            <th>Dikirim</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -26,7 +29,9 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $notify->title}}</td>
+              <td>{{ $notify->pengirim}}</td>
               <td>{{ $notify->user->name}}</td>
+              <td>{{ $notify->created_at->diffForHumans()}}</td>
               <td>
                   <a href="/pekerja/notify/{{ $notify->id }}" class="badge bg-info"><span><svg class="icon me">
                   <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
