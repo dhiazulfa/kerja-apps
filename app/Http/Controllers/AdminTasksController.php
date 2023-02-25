@@ -25,11 +25,11 @@ class AdminTasksController extends Controller
 
         if($user2 == 'admin'){
             return view('admin.tasks.index',[
-                'tasks' => Task::all()
+                'tasks' => Task::orderByDesc('created_at')->get()
             ]);
         } else {
             return view('admin.tasks.index',[
-                'tasks' => Task::all()->where('client_id', $user)
+                'tasks' => Task::where('client_id', $user)->orderByDesc('created_at')->get()
             ]);
         }
     }

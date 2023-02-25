@@ -7,7 +7,7 @@
     <h1 class="h2">Deskripsi Pekerjaan</h1>
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-12">
     <form method="POST" action="/tasks" class="mb-5">
       @method('post')
         @csrf
@@ -17,7 +17,7 @@
         <input type="text" class="form-control @error('task_id') is-invalid @enderror" id="task_id" name="task_id" value="{{$task->id}}" hidden>
       </div>
 
-      <div class="mb-3 col-md-12">
+      <div class="mb-3 col-md-4">
           <label for="body" class="form-label">Deskripsi Pekerjaan</label>
           <textarea class="form-control row-10 @error('body') is-invalid @enderror" name="body" readonly>{{old('body', $task->body)}}</textarea>
       </div>
