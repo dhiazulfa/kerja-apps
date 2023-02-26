@@ -124,7 +124,7 @@
                     <h2 class="fw-bold">Sign up</h2>
                     <div class="my-2">
                     <img src="assets/img/Company.png" alt="" width="160" height="160">
-                    <h5 class="fw-bold" style="color:#f2ee07" > Daily Worker</h5>
+                    <h5 class="fw-bold" style="color:#f2ee07" > Pekerja</h5>
                      </div>
                     <a class="btn btn-lg btn-outline-light mt-3" type="button" href="/register">Register Now!</a>
                 </div>
